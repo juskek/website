@@ -7,8 +7,8 @@ export const IntroText = () => {
       <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
         I am an engineer and avid creator, and bringing joy through the things I create makes me
         feel alive. This website is a reflection of my journey, my accomplishments, and my
-        aspirations; if you have any questions or opportunities, please don't hesitate to reach out.
-        Enjoy your visit!
+        aspirations; if you have any questions or ideas, please don't hesitate to reach out. Enjoy
+        your visit!
       </p>
     </div>
   )
