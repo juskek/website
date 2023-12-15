@@ -1,5 +1,5 @@
-import 'css/prism.css'
 import 'katex/dist/katex.css'
+import 'src/css/prism.css'
 
 import siteMetadata from '@/data/siteMetadata'
 import PostBanner from '@/layouts/PostBanner'

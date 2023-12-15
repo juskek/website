@@ -1,5 +1,5 @@
-import 'css/tailwind.css'
 import 'pliny/search/algolia.css'
+import 'src/css/tailwind.css'
 
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
