@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 'use client'
 
-import Link from '@/components/Link'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import type { Blog } from 'contentlayer/generated'
 import { slug } from 'github-slugger'
@@ -10,6 +8,8 @@ import { usePathname } from 'next/navigation'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { formatDate } from 'pliny/utils/formatDate'
 import tagData from 'src/app/tag-data.json'
+import Link from 'src/components/Link'
+import Tag from 'src/components/Tag'
 
 interface PaginationProps {
   totalPages: number
