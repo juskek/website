@@ -1,6 +1,6 @@
 export const IntroText = () => {
   return (
-    <div className="flex-1">
+    <div className="row-start-2 sm:col-start-1 sm:row-start-1">
       <h1 className="mb-2 text-3xl font-extrabold leading-9 tracking-tight text-gray-900  sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
         Hey there! I'm Justin.
       </h1>
