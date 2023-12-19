@@ -1,7 +1,7 @@
+import ListLayout from '@/layouts/ListLayoutWithTags'
 import { allBlogs } from 'contentlayer/generated'
 import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { genPageMetadata } from 'src/app/seo'
-import ListLayout from 'src/layouts/ListLayoutWithTags'
 
 const POSTS_PER_PAGE = 5
 
