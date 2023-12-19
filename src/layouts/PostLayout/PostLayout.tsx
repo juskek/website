@@ -41,16 +41,16 @@ export default function PostLayout({
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+        <div className="xl: xl:divide-y xl:divide-gray-200">
           <PostHeader title={title} date={date} locale={siteMetadata.locale} />
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-5 xl:gap-x-6 xl:divide-y-0">
+          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  xl:grid xl:grid-cols-5 xl:gap-x-6 xl:divide-y-0">
             <PostAuthors authorDetails={authorDetails} />
             <div className="top-0 self-start xl:sticky xl:col-start-5 xl:row-start-1">
               <TableOfContents nodes={headings} />
             </div>
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
-              <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+            <div className="divide-y divide-gray-200  xl:col-span-3 xl:row-span-2 xl:pb-0">
+              <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
+              <div className="pb-6 pt-6 text-sm text-gray-700 ">
                 <Link href={discussUrl(path)} rel="nofollow">
                   Discuss on Twitter
                 </Link>
@@ -58,22 +58,17 @@ export default function PostLayout({
                 <Link href={editUrl(filePath)}>View on GitHub</Link>
               </div>
               {siteMetadata.comments && (
-                <div
-                  className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
+                <div className="pb-6 pt-6 text-center text-gray-700 " id="comment">
                   <Comments slug={slug} />
                 </div>
               )}
             </div>
 
             <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
+              <div className="divide-gray-200 text-sm font-medium leading-5  xl:col-start-1 xl:row-start-2 xl:divide-y">
                 {tags && (
                   <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      Tags
-                    </h2>
+                    <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Tags</h2>
                     <div className="flex flex-wrap">
                       {tags.map((tag) => (
                         <Tag key={tag} text={tag} />
@@ -91,7 +86,7 @@ export default function PostLayout({
               <div className="pt-4 xl:pt-8">
                 <Link
                   href={`/${basePath}`}
-                  className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+                  className="text-primary-500 hover:text-primary-600 "
                   aria-label="Back to the blog"
                 >
                   &larr; Back to the blog

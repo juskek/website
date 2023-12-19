@@ -11,10 +11,8 @@ export const NextPost = ({ next }: Props) => {
     next &&
     next.path && (
       <div>
-        <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-          Next Article
-        </h2>
-        <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+        <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Next Article</h2>
+        <div className="text-primary-500 hover:text-primary-600 ">
           <Link href={`/${next.path}`}>{next.title}</Link>
         </div>
       </div>
