@@ -5,7 +5,7 @@ type Props = {
   source?: string
 }
 
-const ImageWithCaption = ({ src, altText, caption, source }: Props) => {
+const ImageAtom = ({ src, altText, caption, source }: Props) => {
   return (
     <figure style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <img src={src} alt={altText} />
@@ -16,4 +16,4 @@ const ImageWithCaption = ({ src, altText, caption, source }: Props) => {
   )
 }
 
-export default ImageWithCaption
+export default ImageAtom
