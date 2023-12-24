@@ -13,7 +13,7 @@ type Props = {
   title: string
   date: string
   locale: string
-  bannerImage: string
+  bannerImage?: string
 }
 
 export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
