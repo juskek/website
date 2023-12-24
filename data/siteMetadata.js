@@ -5,18 +5,18 @@ const siteMetadata = {
   headerTitle: '',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'light', // system, dark or light
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
   siteRepo: 'https://github.com/juskek/website',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
-  mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
-  twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
+  // mastodon: 'https://mastodon.social/@mastodonuser',
+  email: 'justink@theodo.co.uk',
+  github: 'https://github.com/juskek',
+  twitter: 'https://twitter.com/justin_kek',
+  // facebook: 'https://facebook.com',
+  youtube: 'https://www.youtube.com/channel/UChN5uDlmtNVENSC4s9ukr4w',
+  linkedin: 'https://www.linkedin.com/in/justinkek/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the
@@ -37,11 +37,11 @@ const siteMetadata = {
       googleAnalyticsId: 'G-6W56G1B62S', // e.g. G-XXXXXXX
     },
   },
-  newsletter: {
-    // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
-    // Please add your .env file and modify it according to your selection
-    provider: 'buttondown',
-  },
+  // newsletter: {
+  //   // supports mailchimp, buttondown, convertkit, klaviyo, revue, emailoctopus
+  //   // Please add your .env file and modify it according to your selection
+  //   provider: 'buttondown',
+  // },
   comments: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
