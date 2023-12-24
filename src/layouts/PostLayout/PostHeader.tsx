@@ -1,4 +1,6 @@
 import PageTitle from '@/components/PageTitle'
+import Image from 'next/image'
+import Bleed from 'pliny/ui/Bleed'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -11,9 +13,10 @@ type Props = {
   title: string
   date: string
   locale: string
+  bannerImage: string
 }
 
-export const PostHeader = ({ title, date, locale }: Props) => {
+export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
   return (
     <header className="pt-6 xl:pb-6">
       <div className="space-y-1 text-center">
@@ -27,6 +30,15 @@ export const PostHeader = ({ title, date, locale }: Props) => {
             </dd>
           </div>
         </dl>
+        {bannerImage && (
+          <div className="w-full">
+            <Bleed>
+              <div className="relative aspect-[2/1] w-full">
+                <Image src={bannerImage} alt={title} fill className="object-cover" />
+              </div>
+            </Bleed>
+          </div>
+        )}
         <div>
           <PageTitle>{title}</PageTitle>
         </div>

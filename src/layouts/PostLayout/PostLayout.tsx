@@ -34,7 +34,7 @@ export default function PostLayout({
   prev,
   children,
 }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, path, slug, date, title, tags, bannerImage } = content
   const basePath = path.split('/')[0]
 
   return (
@@ -42,7 +42,12 @@ export default function PostLayout({
       <ScrollTopAndComment />
       <article>
         <div className="xl: xl:divide-y xl:divide-gray-200">
-          <PostHeader title={title} date={date} locale={siteMetadata.locale} />
+          <PostHeader
+            title={title}
+            date={date}
+            locale={siteMetadata.locale}
+            bannerImage={bannerImage}
+          />
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  xl:grid xl:grid-cols-5 xl:gap-x-6 xl:divide-y-0">
             <PostAuthors authorDetails={authorDetails} />
             <div className="top-0 self-start xl:sticky xl:col-start-5 xl:row-start-1">
