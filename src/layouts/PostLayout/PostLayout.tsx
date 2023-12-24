@@ -50,7 +50,7 @@ export default function PostLayout({
           />
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-5 md:gap-x-6 md:divide-y-0">
             <PostAuthors authorDetails={authorDetails} />
-            <div className="top-0 self-start md:sticky md:col-start-5 md:row-start-1">
+            <div className="top-0 self-start md:sticky md:col-start-5 md:row-span-full md:row-start-1">
               <TableOfContents nodes={headings} />
             </div>
             <div className="divide-y divide-gray-200  md:col-span-3 md:row-span-2 md:pb-0">
