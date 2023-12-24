@@ -5,8 +5,7 @@ tags: ['flutter', 'react native']
 draft: false
 summary: 'Does the framework have the features we need to achieve the business goal? What can each framework do to help us achieve the goal with the least amount of resources?'
 ---
-
-![Alt text](/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image.png)
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image.png"/>
 # Flutter vs React Native Dec 2023: As a Senior Dev
 {/* VARIABLE:REFER_TO_MAIN_ARTICLE_INTRO */}
 > This article is a subset of the main article, [Flutter vs React Native Dec 2023: A guide from every experience level](../0-main/react-native-vs-flutter.md), which is a high level comparison of Flutter and React Native from different experience levels and some use cases. This article goes into detail on the differences between Flutter and React Native from a senior developer’s perspective, and is meant to support the main article.
@@ -25,15 +24,7 @@ As a senior dev, factors such as developer experience may become less important 
 
 There are several dependency injection tools you can use in Flutter which allow you to provide classes with their dependencies automatically (think React Native’s Contexts API but on steroids). Dependency injection is critical for keeping code loosely coupled and promoting testability, and DI tools can help to reduce boilerplate and dev time in setting it up.
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image-1.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-An example of Dependency Injection in Flutter using injectable, where a roomId (dependency) is resolved to a getter or constant depending on whether env is set to prod or test.
-</figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image-1.png" caption="An example of Dependency Injection in Flutter using injectable, where a roomId (dependency) is resolved to a getter or constant depending on whether env is set to prod or test."/>
 
 This is not to say that dependency injection is not possible in React Native or JS:
 
@@ -45,26 +36,11 @@ This is not to say that dependency injection is not possible in React Native or 
 
 The following image shows the difference in the number of packages and files you need to configure in React Native and Flutter.
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image-2.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-Testing is easier to set up in Flutter
-</figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/image-2.png" caption="Testing is easier to set up in Flutter"/>
 
 There are fewer packages to install and files to configure — most of what you need works out of the box in Flutter, which reduces set-up time when starting new projects. Additionally, fewer dependencies also mean that testing bugs are easier to resolve, and because Flutter tests run in the same environment as the main app, you don’t get node version issues.
 
-<figure>
-  <img src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/e2e.gif" alt="my alt text"/>
-  <figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-    Example of E2E tests on Flutter running interactively between multiple devices.
-  </figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/e2e.gif" caption="Example of E2E tests on Flutter running interactively between multiple devices"/>
 
 ### Flutter standardises UI behaviour on different platforms and devices
 
@@ -115,31 +91,14 @@ On the lower-level side, if you intend to contribute to engineering the framewor
   - Flutter engine, which is written in C++, and provides the rendering, I/O and other low-level services
   - Flutter embedder, which is written in native code to run the engine on any platform
 
-
-<figure>
-  <img src="https://docs.flutter.dev/assets/images/docs/arch-overview/archdiagram.png" alt="my alt text"/>
-  <figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-    Flutter Architecture
-    <a href="https://docs.flutter.dev/resources/architectural-overview">(Source)</a>
-  </figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/flutter_archi.png" caption="Flutter Architecture" source="https://docs.flutter.dev/resources/architectural-overview"/>
 
 - React Native consists of the
   - React Native framework, which is written in JS and provides elements for you to build your app
   - RN Fabric Renderer, which is written in JS and native code, allowing native components to be rendered
   - RN Turbo Modules, which is written in JS and native code, allowing JS and native code to communicate with each other
 
-
-<figure>
-  <img src="https://res.cloudinary.com/formidablelabs/image/upload/f_auto,q_auto/v1675121564/dotcom/uploads-new-diagram-full" alt="my alt text"/>
-  <figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-    my_caption
-    <a href="https://formidable.com/blog/2019/lean-core-part-4/">(Source)</a>
-  </figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/2-as-a-senior-dev/images/rn_archi.avif" caption="React Native Architecture" source="https://formidable.com/blog/2019/lean-core-part-4/"/>
 
 You can read more about Flutter's architecture [here](https://docs.flutter.dev/resources/architectural-overview) and React Native's architecture [here](https://reactnative.dev/docs/next/the-new-architecture/landing-page) and [here](https://formidable.com/blog/2019/lean-core-part-4/).
 

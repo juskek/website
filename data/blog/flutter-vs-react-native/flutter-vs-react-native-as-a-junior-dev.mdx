@@ -5,7 +5,10 @@ tags: ['flutter', 'react native']
 draft: false
 summary: 'Which framework can provide the best developer experience (DevX) so that I can deliver value to users as quickly as possible? Which framework will help me grow the most as a developer? Which framework will help me get a job in the future?'
 ---
-![Alt text](/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image.png)
+
+
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image.png" altText="Flutter vs React Native"/>
+
 # Flutter vs React Native Dec 2023: As a Junior Dev
 
 > This article is a subset of the main article, [Flutter vs React Native Dec 2023: A guide from every experience level](../0-main/react-native-vs-flutter.md), which is a high level comparison of Flutter and React Native from different experience levels and some use cases. This article goes into detail on the differences between Flutter and React Native from a junior developer’s perspective, and is meant to support the main article.
@@ -26,14 +29,7 @@ As a junior dev, your main responsibility is usually to bring value to users wit
 
 There is a built-in system that you can use to manage your app themes, allowing you to set different fonts, colours and component behaviour for different modes (e.g. light/dark mode).
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/theme.gif" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-Flutter provides a structured system for managing themes (fonts, colours, light/dark/system mode)
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/theme.gif" caption="Flutter provides a structured system for managing themes (fonts, colours, light/dark/system mode)"/>
 
 I found package management to be a lot easier in Flutter as well. There is one package manager to rule them all in Flutter (flutter pub), but when I was working with Expo (a React Native framework) as a junior dev, I could accidentally switch between expo, yarn, npm and have to deal with dependency issues.
 
@@ -43,44 +39,20 @@ The built-in Material and Cupertino design systems also mean that components loo
 
 Another thing I loved about Flutter was its VSCode extension — you can generate commonly used boilerplate code with shortcuts,
 
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/boilerplate.gif" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-You can generate boilerplate code out of the box with the Flutter VSCode extension
-</figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/boilerplate.gif" caption="You can generate boilerplate code out of the box with the Flutter VSCode extension
+"/>
 
 get detailed code suggestions for component properties and the values it accepts,
 
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/code_suggestions.gif" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-The Flutter VSCode extension provides detailed code suggestions for accepted options, colours etc.
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/code_suggestions.gif" caption="The Flutter VSCode extension provides detailed code suggestions for accepted options, colours etc."/>
 
 get detailed in-line docs for each component without leaving your code editor,
 
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/inline_docs.gif" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-You can get detailed docs by hovering over a Flutter component
-</figcaption>
-</figure>
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/inline_docs.gif" caption="You can get detailed docs by hovering over a Flutter component"/>
 
 and access code actions for commonly performed operations.
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/code_actions.gif" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-The Flutter VSCode extension provides code actions for commonly used operations.
-</figcaption>
-</figure>
-
-
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/code_actions.gif" caption="The Flutter VSCode extension provides code actions for commonly used operations"/>
 
 ###  Diagnosing a bug in Flutter can be easier
 
@@ -96,25 +68,11 @@ Think about which component in the toolchain could be causing the issue, and
 Add the components that I think are causing the bug to the search, e.g. `react native jest node babel <bug>`.
 This multistage debugging process for React Native is because JavaScript’s ecosystem comprises numerous build tools, compilers, and frameworks that can interact in complex ways. This complexity means that bugs can arise from any number of sources, not solely the React Native framework itself. Therefore, it’s often necessary to consider the entire toolchain when diagnosing problems, which can be daunting for junior developers.
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-8.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-The debugging process can be more complex due to the large ecosystem of tools, compilers and frameworks in React Native.
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-8.png" caption="The debugging process can be more complex due to the large ecosystem of tools, compilers and frameworks in React Native"/>
 
 ###  Type guards are not needed in Flutter
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-9.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-You don’t need to use type guards in Dart because of its sound typing system.
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-9.png" caption="You don’t need to use type guards in Dart because of its sound typing system"/>
 
 Since JavaScript variables do not have a fixed type and can be reassigned to different types of values throughout the code, you can run into runtime errors due to unexpected types, which is where type guards come in. Type guards are conditional checks that serve as runtime checks to ensure that a variable is of a certain type before it’s used in a way that assumes that type.
 
@@ -126,13 +84,7 @@ Dart’s type system also includes type inference, which can deduce the type of 
 
 This is great for junior developers as the linter shows errors and best practices recommended by the Flutter/Dart team.
 
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-10.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-Linting works out of the box for Flutter but requires configuration and know-how for React Native
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-10.png" caption="Linting works out of the box for Flutter but requires configuration and know-how for React Native"/>
 
 On the other hand, linting can be slightly more troublesome to set up and configure in React Native.
 
@@ -149,13 +101,7 @@ ChatGPT also works great when I’m trying to debug issues in React Native, but 
 
 When it comes to the availability of third-party packages, React Native and Flutter present different ecosystems. There are over 1.3 million packages on npm alone, while Flutter’s [pub.dev](https://pub.dev/) only has 33 thousand packages. I’ve almost always found the React Native package I need on the first Google search, while there have been occasions where I had to [write my own Flutter package](https://github.com/Kek-Tech/flutter_google_maps_widget_cluster_markers).
 
-<figure>
-  <img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/maps.gif" alt="my alt text"/>
-  <figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-    The number of Flutter packages pales in comparison to React Native — I had to write my own package to implement dynamic markers on Google Maps.
-  </figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/maps.gif" caption="The number of Flutter packages pales in comparison to React Native — I had to write my own package to implement dynamic markers on Google Maps."/>
 
 ### More opportunities with JS and React
 
@@ -168,14 +114,7 @@ Learning React Native on the other hand can allow you to transition to web dev a
 
 Another factor that you may want to take into consideration is the programming paradigm. React has moved towards functional programming, while Flutter remains very much object-oriented.
 
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-12.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-React uses functional components, while Flutter uses class components
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-12.png" caption="React uses functional components, while Flutter uses class components"/>
 
 While it is still possible to perform object-oriented programming in React with Javascript + Typescript, React recommends functional components over class components. This can lead to 2 different programming paradigms in your codebase; functionally programmed React components and object-oriented code in the rest of the codebase. Depending on your team’s preferred programming style, this can lead to inconsistent code style which can be confusing.
 
@@ -183,15 +122,7 @@ On a separate note, Flutter provides an avenue for you to learn OOP principles w
 
 ### Everything is a component/widget in Flutter, while React Native uses components and stylesheets
 
-
-
-<figure>
-<img src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-13.png" alt="my alt text"/>
-<figcaption style={{ textAlign: 'center', fontSize: 'smaller' }}>
-
-Styling: React Native uses style sheets and components, while everything is a widget in Flutter.
-</figcaption>
-</figure>
+<ImageAtom src="/static/blog/flutter-vs-react-native/1-as-a-junior-dev/images/image-13.png" caption="Styling: React Native uses style sheets and components, while everything is a widget in Flutter"/>
 
 In Flutter, the fundamental building block of the UI is a widget. Everything from a simple text string to an elaborate page layout is a widget, and these widgets nest within each other to build complex interfaces. This unified model fosters a consistent development approach where the properties, layout, and styling of UI elements are all defined within the widget’s code.
 
