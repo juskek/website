@@ -8,7 +8,7 @@ export const TableOfContents = ({ nodes }) => {
   }
 
   return (
-    <div className={'toc p-2'}>
+    <div className={'toc max-h-full p-2'}>
       <h3 className={'font-bold underline'}>Table of Contents</h3>
       {renderNodes(nodes)}
     </div>
