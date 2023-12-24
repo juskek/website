@@ -17,7 +17,7 @@ export const TableOfContentsLink = ({ node, depth, sectionNumber }) => {
   return (
     <a href={`#${id}`}>
       <div
-        className={`${isActiveId && 'text-blue-400'} ${indentationLevels[depth]}`}
+        className={`${isActiveId && 'sm:text-blue-400'} ${indentationLevels[depth]}`}
       >{`${sectionNumber} ${node.value}`}</div>
     </a>
   )
