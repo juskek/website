@@ -33,8 +33,8 @@ export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
         {bannerImage && (
           <div className="w-full">
             <Bleed>
-              <div className="relative aspect-[2/1] w-full">
-                <Image src={bannerImage} alt={title} fill className="object-cover" />
+              <div className="relative aspect-[1/1] w-full sm:aspect-[1.5/1] md:aspect-[2/1] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+                <Image src={bannerImage} alt={title} fill className="object-contain" />
               </div>
             </Bleed>
           </div>
