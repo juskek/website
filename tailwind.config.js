@@ -13,6 +13,7 @@ module.exports = {
     './layouts/**/*.{js,ts,tsx}',
     './data/**/*.mdx',
   ],
+  darkMode: 'false',
   theme: {
     extend: {
       lineHeight: {
