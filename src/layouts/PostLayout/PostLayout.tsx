@@ -34,7 +34,7 @@ export default function PostLayout({
   prev,
   children,
 }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags, bannerImage } = content
+  const { filePath, path, slug, date, title, tags, bannerImage, readingTime } = content
   const basePath = path.split('/')[0]
 
   return (
@@ -47,6 +47,7 @@ export default function PostLayout({
             date={date}
             locale={siteMetadata.locale}
             bannerImage={bannerImage}
+            readingTime={readingTime}
           />
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-5 md:gap-x-6 md:divide-y-0">
             <PostAuthors authorDetails={authorDetails} />

@@ -14,9 +14,10 @@ type Props = {
   date: string
   locale: string
   bannerImage?: string
+  readingTime: { text: string }
 }
 
-export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
+export const PostHeader = ({ title, date, locale, bannerImage, readingTime }: Props) => {
   return (
     <header className="pt-6 xl:pb-6">
       <div className="space-y-1 text-center">
@@ -41,6 +42,9 @@ export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
         )}
         <div>
           <PageTitle>{title}</PageTitle>
+        </div>
+        <div className="flex justify-center p-2 text-sm text-gray-500">
+          <span>{readingTime.text}</span>
         </div>
       </div>
     </header>
