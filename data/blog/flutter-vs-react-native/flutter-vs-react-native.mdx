@@ -7,7 +7,7 @@ summary: 'Which cross-platform framework should you choose as a junior dev, seni
 bannerImage: '/static/blog/flutter-vs-react-native/0-main/images/image.png'
 ---
 
-> Which cross-platform framework should you choose as a junior dev, senior dev and CTO? (Updated Nov 2023)
+> Which cross-platform framework should you choose as a junior dev, senior dev and CTO?
 
 ## Introduction
 If you’re reading this article you’ve probably decided to use a cross-platform framework over native development. Cross-platform frameworks allow you to deploy to multiple platforms from a single codebase, which has two main benefits:
@@ -20,7 +20,7 @@ The two main contenders in the cross-platform framework space are Flutter and Re
 
 Just two things to note before we begin:
 
-1. Each perspective will consist of two parts: a TLDR with the main takeaways, and a detailed explanation of the tradeoffs contained within a separate article. This will allow you to get a quick summary of the , and dive deeper into the details if you need to.
+1. Each perspective will consist of two parts: a TLDR with the main takeaways, and a detailed explanation of the tradeoffs contained within a separate article. This will allow you to get a quick summary of the two frameworks, and dive deeper into the details if you need to.
 2. The sections are written in a way that builds on each other, so if you are a junior dev, I recommend that you read through the sections for senior devs and CTOs as well. This will help you understand the higher-level implications of each framework, and how it will affect your career growth in the long run. Similarly, if you are a CTO choosing Flutter or React Native to develop your company’s product, I strongly recommend that you read through the sections for junior devs and senior devs as well. This will help you understand the lower-level implications of each framework, and how it will affect the quality and speed at which your product will be developed.
 
 Now that we’ve gotten that out of the way, let’s dive in with a quick overview!
@@ -49,7 +49,7 @@ Flutter uses the Dart programming language, which is also developed by Google. D
 React Native uses JavaScript, which has a rich history in web development and extensive online resources. It can be combined with TypeScript to provide static typing, but runtime type errors are still possible.
 
 ### UI components used by Flutter and React Native
-Flutter comes with a rich set of pre-designed widgets that follow specific design languages, such as Material Design and Cupertino. These widgets help in creating visually appealing and “natively behaving” apps for both Android and iOS platforms. However, you can also create your own design systems with highly composable widgets.
+Flutter comes with a rich set of pre-designed widgets that follow specific design languages, such as Material Design and Cupertino. These widgets help in creating visually appealing and “natively behaving” apps for both Android and iOS platforms. However, you can also create custom design systems with highly composable widgets.
 
 React Native uses native components as building blocks, and as a result, provides the look, feel, and performance of native applications.
 
@@ -70,9 +70,9 @@ The TLDR to these questions are:
 {/* VARIABLE:JUNIOR_DEV_SUMMARY */}
 - Flutter excels at out-of-the-box DevX and a simple toolchain.
 - React Native excels at the amount of resources and job opportunities available.
-- Both frameworks will help you grow as a developer, but in different ways. For me,
+- Both frameworks will help you grow as a developer but in different ways. For me,
   - I've spent more time learning about OOP and app architecture, in Dart/Flutter. This is because Flutter saved a lot of my dev time with its simplified toolchain, allowing me to spend more time on design patterns and codebase structure.
-  - In JS/React Native, I've spent more time learning about the JS ecosystem and how to debug complicated toolchains, which is typically abstracted away in Flutter. This became a framework agnostic skill for me, but was frustrating to learn as a junior dev.
+  - In JS/React Native, I've spent more time learning about the JS ecosystem and how to debug complicated toolchains - something that is typically abstracted away in Flutter. This became a framework-agnostic skill for me but was frustrating to learn as a junior dev.
 
 You can dive into the details in the following article: [Flutter vs React Native: As a Junior Dev](./flutter-vs-react-native-as-a-junior-dev)
 
@@ -90,7 +90,7 @@ As a senior dev, factors such as developer experience may become less important 
 The TLDR to these questions are:
 {/* VARIABLE:SENIOR_DEV_SUMMARY */}
 - Flutter excels at dependency injection, E2E testing, and UI standardisation, which will help your team work more efficiently.
-- React Native excels in the amount of packages available, which means someone else has probably already solved the problem you are facing, saving dev time.
+- React Native excels in the number of packages available, which means someone else has probably already solved the problem you are facing, saving dev time.
 
 You can dive into the details in the following article: [Flutter vs React Native: As a Senior Dev](./flutter-vs-react-native-as-a-senior-dev)
 
@@ -122,9 +122,9 @@ The options on the table are:
 - React Native for desktop, mobile and web.
 - Flutter for mobile and desktop, NextJS for web
 
-**React Native + NextJS**: One of the best ways you can improve SEO is to use a server-side rendering framework like NextJS. While React Native is not directly portable to NextJS, the fact that they are both JS frameworks means that you can share components between them. With that in mind, you’ll probably only need React devs to build and maintain your React Native app and NextJS website.
+**React Native + NextJS**: One of the best ways you can improve SEO is to use a server-side rendering framework like NextJS alongside your React Native app. React Native components can be imported directly into NextJS, allowing you to build universal apps for functional and design consistency. See [reactnative-nextjs-template](https://github.com/tomsoderlund/reactnative-nextjs-template) or [luna](https://github.com/LunatiqueCoder/luna) for examples.
 
-**React Native only**: Using React Native for all platforms will allow you to maintain design and functional consistency between your web, desktop and mobile applications, but at the expense of some sub-optimal SEO.
+**React Native only**: Using React Native for all platforms will allow you to have one less framework in your stack, but you will need to find a way to make your app crawlable on the web.
 
 **Flutter + NextJS**: This will allow you to adhere to SEO best practices while reaping the benefits of Flutter. However, this would mean that you would need a team capable of developing in both frameworks.
 
@@ -141,7 +141,7 @@ If you are looking to build an app like Spotify, where one of your success crite
 
 The options on the table are:
 
-- Flutter for mobile, desktop and web app, NextJS for website
+- Flutter for mobile, desktop and web apps, NextJS for website
 - React Native for mobile, desktop and web, NextJS for website
 
 **Flutter + NextJS**: Using Flutter for the application experience, and NextJS for the landing page allows you to avoid all the platform and device-specific bugs associated with using native components in React Native. Developing the website in NextJS keeps it SEO-friendly while still allowing you to embed the Flutter web app as an SPA if need be.
@@ -161,7 +161,7 @@ The options on the table are:
 - React Native for iOS and Android
 - Flutter for iOS and Android
 
-Using React Native will allow you to tap into the look and behaviour of native components in iOS and Android. Additionally, iOS components are known to be fancy and performant, which is an added bonus.
+Using React Native will allow you to tap into the look and behaviour of native components in iOS and Android. Additionally, iOS components are known to be fancy and performant, which is a bonus.
 
 While using Flutter will not give you the same native look and feel on iOS, it can bring significant advantages to Android, because there are quite a few Android variants where native UI elements can sometimes behave unpredictably. In such cases, Flutter provides a level of consistency that might be hard to achieve with React Native or even native Android development.
 
@@ -179,32 +179,4 @@ Big shoutout to:
 - [Guillaume Diallo Boisgard](https://www.linkedin.com/in/guillaumediallomulliez/) for sharing his experience as Head of Flutter @ [BAM](https://www.bam.tech/)
 - [Matthieu Perenelle](https://www.linkedin.com/in/matthieu-pernelle-171a93122/) for sharing his insights from becoming a Flutter developer after working with React Native @ [BAM](https://www.bam.tech/)
 
-Disclosure: I’ve tried to write this article as objectively as I can, but I am not omniscient nor completely unbiased (I started my dev journey with Flutter). Please leave a comment if you feel like this article is missing key points of debate, so that we can have more insightful discussions to grow both communities and potentially shape the frameworks into their niche!
-
-## Appendix
-
-### Upcoming
-
-Kotlin Multiplatform + Jetpack Compose is another cross-platform framework that is gaining traction. I will be analyising it in this article once I have more experience with it, but essentially, the main differences between Kotlin Multiplatform, React Native and Flutter are:
-- Flutter
-  - UI and Biz Logic in Dart
-- React Native
-  - Native UI called by JS
-  - Biz Logic in JS
-- Kotlin Multiplatform
-  - Native UI
-    - (or you can also call UI through Jetpack Compose)
-  - Biz Logic in Kotlin
-
-### Resources
-
-Other related articles I have written:
-
-- [Implementing the DRVVM model in Flutter](https://justinkek.medium.com/implementing-the-drvvm-model-in-flutter-055780ac8bad)
-- [Mastering App Architecture in Flutter](https://justinkek.medium.com/mastering-app-architecture-in-flutter-499c6f02dd59)
-
-Other resources you might find interesting:
-
-- [Apps using Flutter](https://flutter.dev/showcase)
-- [Apps using React Native](https://reactnative.dev/showcase)
-- [Roadmap for Flutter](https://github.com/flutter/flutter/wiki/Roadmap)
+Disclosure: I’ve tried to write this article as objectively as I can, but I am not omniscient nor completely unbiased (I started my dev journey with Flutter). Please leave a comment if you feel like this article is missing key points of debate so that we can have more insightful discussions to grow both communities and potentially shape the frameworks into their niche!
