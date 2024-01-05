@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'light', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https://justinkek.com',
   siteRepo: 'https://github.com/juskek/website',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter_card.png',
