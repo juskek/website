@@ -1,0 +1,130 @@
+---
+title: Android's Guide to App Architecture in Flutter
+date: '2024-01-10'
+tags: ['flutter', 'app architecture', 'android','layered architecture', 'drvvm']
+summary: 'A comprehensive guide on app architecture in Flutter, drawing inspiration from Android’s “Guide to app architecture” and enriched by my practical insights gained through my journey as a freelancer and a software engineer at Theodo.'
+bannerImage: '/static/blog/flutter/flutter-app-architecture/flutter_app_architecture.webp'
+---
+
+> This document has been crafted to be your go-to guide on app architecture in Flutter, drawing inspiration from [Android’s “Guide to app architecture”](https://developer.android.com/topic/architecture) and enriched by my practical insights gained through my journey as a freelancer and a software engineer at Theodo. I will be making updates as I learn new architecture approaches, so stay tuned!
+
+## Introduction to App Architecture
+App architecture is the backbone of scalable and maintainable applications.
+
+When you first start developing, you may store state in app components out of convenience. However, this means that it can be difficult to share state with other components, and state is not preserved when the component reaches the end of its lifecycle.
+
+Subsequently, as your app scales and you try to add tests, you also realise that because the state is tightly coupled with app components, it becomes messy when you are trying to have different state configurations for testing and production, or edge cases.
+
+To address the above problems, you should design your app architecture to follow a few specific principles, namely:
+
+- Separation of Concerns
+- Model-Driven UI
+- Single Source of Truth (SSOT)
+- Unidirectional Data Flow (UDF)
+- Offline-First App
+
+### Separation of concerns
+
+Separation of concerns is making sure that groups of code are responsible for one type of task only.
+
+Most commonly, this means keeping code for UI, business logic and data management separate. By segregating code into what they are responsible for, you can avoid problems related to UI component lifecycles and improve testability.
+
+### Model-Driven UI
+
+
+Model-driven UI means that you have a set of persistent models containing data needed to display UI.
+
+These models remain detached from UI elements and other volatile components, ensuring that the app can always render something to the user regardless of the component lifecycle, unexpected app crashes or poor network conditions.
+
+### Single Source of Truth (SSOT)
+
+
+SSOT means that you have a single point of contact to:
+
+- access immutable data, and
+- mutate data in a controlled manner
+
+Accessing immutable data means that once it is retrieved, changing the retrieved data does not change the data located at the SSOT. Mutating data in a controlled manner means that you can only change the data located in the SSOT through the methods made available by that single point of contact.
+
+This protects data so that it cannot be tampered with in other areas, and also centralises all changes in one place, making debugging easier.
+
+### Unidirectional Data Flow
+
+Unidirectional flow is
+- the one-directional flow of data from the source to the component that consumes it, and
+- the one-directional flow of events from components to the source where data is modified
+
+This pattern better guarantees data consistency, is less prone to errors, is easier to debug and brings all the benefits of the SSOT pattern.
+
+### Offline-First App
+
+
+Having an offline-first app means that your app can perform at least a critical subset of its core features without internet access.
+
+To build an offline-first app, you need to ensure that the app:
+
+- Continues to function smoothly even in the absence of a stable internet connection
+- Instantly shows UI with on-device data, eliminating the need to wait for initial network interactions to succeed or fail
+- Retrieves data while in consideration of the device’s battery life and data usage, opting to sync data preferably when the device is charging or connected to WiFi
+
+## App Architecture Implementations
+
+Now that we’ve covered the different app architecture principles, let’s look into how we can design an architecture pattern built off those principles.
+
+### Data-Repository-View-ViewModel (DRVVM)
+<ImageAtom src="/static/blog/flutter/flutter-app-architecture/drvvm.webp" caption="Data-Repository-View-ViewModel Architecture based off Android App Architecture" source="https://developer.android.com/topic/architecture"/>
+
+The DRVVM pattern is a layered architecture pattern that consists of 4 layers, each with different responsibilities:
+
+- View layer
+- ViewModel layer
+- Repository layer
+- Data layer
+
+### Data Layer
+
+The Data layer consists of two data sources:
+
+- LocalDataSource: An API for the SSOT, usually a database or some kind of local storage on the device. (e.g. for RoomDataSource you could have currentRoomId)
+- RemoteDataSource: An API for remote data sources, usually some kind of Web API.
+
+### Repository Layer
+
+The Repository layer acts as the interface where you can access and mutate the Data layer.
+
+The Repository layer has the following roles:
+
+- Resolving Discrepancies: When there are discrepancies between LocalDataSource and RemoteDataSource, the Repository resolves them.
+- Exposing Methods: The Repository provides a set of permitted operations on the data type, e.g. for RoomRepository you could have `getRoomId()` and `joinRoom(id)`
+
+The Repository layer has the following characteristics:
+
+- Stateless: It does not contain any variables; only getters and setters which then accesses and mutates the LocalDataSource and RemoteDataSource.
+- Singleton: There is only a single instance of the Repository in the app so that concurrent access to the LocalDataSource and RemoteDataSource does not occur.
+
+### View Model Layer
+
+The ViewModel layer is in charge of handling business logic and is the channel for communication between the Repository layer and the View layer.
+
+The ViewModel handles data and events between the View layer and the Repository layer:
+
+- Data (e.g. `username`) travels from the Repository layer to the ViewModel layer, where any processing or logical operations are performed, before being passed to the View layer.
+- User events (e.g. `onTap`) travel from the View layer to the ViewModel layer, where business logic is applied and any calls to the Repository layer are then invoked.
+
+The ViewModel layer has the following characteristics:
+
+- Stateful: Any form of component lifecycle state (e.g. animation controllers, timers) is stored here. Note that persistent state is still stored in the Data layer so that it can last between component lifecycles.
+
+### View Layer
+
+The View layer is in charge of rendering UI and detecting user events, and has the following characteristics:
+
+- Stateless: All state required for the View component is stored in its corresponding ViewModel component.
+
+### Implementations
+
+- [`provider + injectable + hive`](./implementing-the-drvvm-architecture-in-flutter)
+
+## Conclusion
+
+Currently, my favourite app architecture approach is the DRVVM approach, implemented with provider, injectable and hive. This may change further down the line so stay tuned; if you have any questions feel free to reach out or leave a comment below!
