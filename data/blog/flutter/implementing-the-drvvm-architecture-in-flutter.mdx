@@ -5,7 +5,7 @@ tags: ['flutter', 'app architecture', 'android', 'layered architecture', 'drvvm'
 summary: 'An implementation of the Data-Repository-View-ViewModel Architecture in Flutter using provider, injectable and hive.'
 bannerImage: '/static/blog/flutter/flutter-app-architecture/drvvm/drvvm_dash.webp'
 ---
-> Before you continue… This article is part of a parent article ([Android's Guide to App Architecture in Flutter](./androids-guide-to-app-architecture-in-flutter)), where the concepts of app architecture are discussed. There is specific terminology used in this article (e.g. LocalDataSource, RemoteDataSource) — if you are a seasoned developer you should be able to piece things together, but if it is unclear please read the parent document or feel free to reach out.
+> Before you continue… This article is part of a parent article ([Android's Guide to App Architecture in Flutter](./androids-guide-to-app-architecture-in-flutter)), where concepts used in this article are discussed. If you encounter specific terminology in this article (e.g. LocalDataSource, RemoteDataSource) which you don't understand, please consult the parent document or reach out to me!
 
 ## Introduction
 
@@ -48,7 +48,7 @@ Let’s walk through an example together; assume that we wanted to implement a H
 
 In the Data layer, we will need to create a RemoteDataSource to interface with an arbitrary remote authentication provider, and a LocalDataSource to interface with the device’s local storage.
 
-In this case, I used Firebase as the remote authentication provider, which has its built-in `signIn`()` method that returns a `User` credential.
+In this case, I used Firebase as the remote authentication provider, which has its built-in `signIn()` method that returns a `User` credential.
 
 There are two steps to creating the RemoteDataSource:
 

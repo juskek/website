@@ -6,7 +6,7 @@ summary: 'A comprehensive guide on app architecture in Flutter, drawing inspirat
 bannerImage: '/static/blog/flutter/flutter-app-architecture/flutter_app_architecture.webp'
 ---
 
-> This master document has been crafted to be your go-to guide on app architecture in Flutter, drawing inspiration from [Android’s “Guide to app architecture”](https://developer.android.com/topic/architecture) and enriched by my practical insights gained through my journey as a freelancer and a software engineer at Theodo. I will be making updates when I discover new insights, so stay tuned!
+> This document has been crafted to be your go-to guide on app architecture in Flutter, drawing inspiration from [Android’s “Guide to app architecture”](https://developer.android.com/topic/architecture) and enriched by my practical insights gained through my journey as a freelancer and a software engineer at Theodo. I will be making updates as I learn new architecture approaches, so stay tuned!
 
 ## Introduction to App Architecture
 App architecture is the backbone of scalable and maintainable applications.
@@ -36,7 +36,7 @@ Model-driven UI means that you have a set of persistent models containing data n
 
 These models remain detached from UI elements and other volatile components, ensuring that the app can always render something to the user regardless of the component lifecycle, unexpected app crashes or poor network conditions.
 
-### Single Source of Truth
+### Single Source of Truth (SSOT)
 
 
 SSOT means that you have a single point of contact to:
@@ -65,7 +65,7 @@ To build an offline-first app, you need to ensure that the app:
 
 - Continues to function smoothly even in the absence of a stable internet connection
 - Instantly shows UI with on-device data, eliminating the need to wait for initial network interactions to succeed or fail
-- Retrieves data while in consideration of the device’s battery life and data usage, opting to sync data preferably when the device is charging or connected to WiFi.
+- Retrieves data while in consideration of the device’s battery life and data usage, opting to sync data preferably when the device is charging or connected to WiFi
 
 ## App Architecture Implementations
 
@@ -80,6 +80,7 @@ The DRVVM pattern is a layered architecture pattern that consists of 4 layers, e
 - ViewModel layer
 - Repository layer
 - Data layer
+
 ### Data Layer
 
 The Data layer consists of two data sources:
