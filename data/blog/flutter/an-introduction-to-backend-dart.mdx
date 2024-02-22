@@ -1,0 +1,264 @@
+---
+title: An Intro to Backend Dart
+date: '2024-01-15'
+tags: ['flutter', 'dart', 'backend']
+summary: 'An introduction to Backend Dart, when you should use it, and what options there are available.'
+bannerImage: '/static/blog/flutter/backend-for-flutter/dart_backend.webp'
+---
+> bal bla bla summary
+
+## Introduction
+
+Given that you are searching for Backend for Flutter, you are likely working with a Flutter app and have encountered a scenario where you need a backend server, e.g.
+
+- You had a Flutter app with client-side only functionality, but you now need to add a backend server to handle more complex features
+- You started with Flutter + Firebase and you are looking to introduce a web server to handle more complex business logic
+- You are looking to build a Flutter app that can be used offline, and you need a backend server to handle data synchronisation
+- You want to use a plain SQL database and need to abstract away the database access layer for security
+
+In this situation, there are two approaches you can take: 
+- Use a backend server written in a different language, e.g. Node.js, Python, Java, etc.
+- Use a backend server written in Dart
+
+## Should I even use Dart for the backend?
+
+The main advantage of using a Dart backend is that you can reuse the same language and similar libraries/tooling on the frontend and backend.
+
+This can bring different advantages depending on your experience level and the size of your team, for example:
+
+- If you are a solo developer, you can reuse the same language and libraries on the frontend and backend, which can reduce the cognitive load of context-switching between languages and libraries
+- If you are a CTO looking to hire developers, you can hire developers with Flutter experience and have them work on the backend as well, which can reduce the cost of hiring and training new developers
+
+However, the disadvantage of using Dart for the backend is that the ecosystem is still relatively new, so there are fewer libraries and tools available compared to other languages.
+
+I would ask myself the following questions to decide whether to use Dart for the backend:
+
+- What features do I need in my backend?
+- Are there Dart libraries that can provide these features?
+  - If not,
+    - Are there libraries in other languages that can provide these features?
+      - If there are libraries in other languages, how much time/resources will it take me or my team to learn and use these libraries?
+        - Does the time/resources required to learn and use these libraries outweigh the advantages of using Dart for the backend?
+    - Will developing those features from scratch in Dart be less pragmatic than using a different language?
+
+If you have realised that Dart is missing the libraries you need for your backend, or that it makes more sense to invest in a different language for your backend, then you should consider some of the options below.
+
+- Javascript/Typescript
+  - ExpressJS
+  - NestJS
+- Python
+  - Django
+  - Flask
+- Java
+  - Spring
+
+If you think that Dart is a good fit for your backend, then read on! 
+
+## Options available for Dart backend
+
+### Celest
+
+Celest is an upcoming backend framework for Dart made by two ex-AWS engineers who were working on the Amplify Flutter team. 
+
+Celest is currently in private beta, but the typical process looks like this:
+1. Create a Flutter app with `flutter create`
+2. Add celest to your Flutter app with `celest init`
+   - At this point, you will have the following folder structure, where lib/ contains your Flutter app and celest/ contains your backend with the entry point in `project.dart`.
+        ```
+        .
+        - lib/
+        -- main.dart
+        ...
+        - celest/ 
+        -- functions/
+        -- content/
+        -- project.dart
+        ...
+        ```
+3. Write your backend in dart + celest
+   - In your `project.dart` file, configure your backend and endpoints, e.g.
+        ```dart
+        // celest/project.dart
+        import 'package:celest/celest.dart';
+        void main() {
+            celest.deploy(HelloProject())
+        }
+
+        class HelloProject extends Project {
+            @override
+            String get projectName => 'hello';
+
+            @override
+            void build(BuiltContext context) {
+                // main celest application
+                final app = FlutterApp();
+
+                // Declare function from say_hello.dart
+                final sayHello = CloudFunction(name: 'say_hello')
+
+                // Declare bucket to store static and dynamic content
+                final bucket = ContentBucket();
+
+                // Add some static assets to the bucket
+                final content = Content.local(path: 'content/');
+                bucket.put(content);
+
+                // Add resources to app
+                app.use(
+                    sayHello,
+                    bucket,
+                    bucket.events.onCreate, // enable backend to notify frontend when something is created in the bucket
+                );
+            }
+        }
+        ```
+   - Create an example endpoint `functions/say_hello.dart`
+        ```dart
+        // celest/functions/say_hello.dart
+        import 'package:celest/celest.dart';
+
+        class Sayhello extends Handler<String, String> {
+            @override
+            Future<String> handle(Context context, String input) async {
+                return 'Hello $input!';
+            }
+        }
+        ```
+   - Add some static assets e.g. `content/wave.png`
+4. Deploy your backend to your AWS account with `celest deploy`
+5. Connect it to your Flutter app
+   - In your Flutter app, you can now make a request to your backend with celest's ORM, e.g.
+
+        ```dart
+        // lib/main.dart
+        import 'package:celest/celest.dart';
+        
+        void main() {
+            runApp(MyApp());
+        }
+
+        class MyApp extends StatelessWidget {
+            @override
+            Widget build(BuildContext context) {
+                return MaterialApp(
+                    title: 'Flutter Demo',
+                    home: Scaffold(
+                        body: Column(
+                            children: [
+                                // Example of listening to changes in the content bucket
+                                StreamBuilder(
+                                    initialData: celest.content.file('wave.png'),
+                                    stream: celest.content.events.onCreate,
+                                    builder: (_, snapshot) => snapshot.data!.asImage()
+                                ),
+                                // Example of calling a function
+                                // This shows a loading indicator while the function is being called
+                                // and then shows Hello Justin! when the backend returns the response
+                                FutureBuilder(
+                                    future: celest.functions.sayHello('Justin'),
+                                    builder: (_, snapshot) => snapshot.when(
+                                        data: (data) => Text(data),
+                                        loading: () => const CircularProgressIndicator(),
+                                    )
+                                )
+                            ]
+                        )
+                    ),
+                );
+            }
+        }
+        ```
+        - This code has two examples
+          - The first example listens to changes in the content bucket and displays an image when it is created, else it displays the original `wave.png` image
+          - The second example calls the `sayHello` function and displays the response when it is returned from the backend, i.e. `Hello Justin!`
+
+### Serverpod
+Serverpod was founded by an ex-Flutter engineer and has accumulated a bunch of features over the years, including:
+ORM, migrations, authentication, authorization, logging and caching.
+
+You can also deploy it to 
+
+ORM is like prisma but for dart
+
+### Folder structure
+When you run `serverpod create mypod`, serverpod creates three packages:
+
+1. A folder for server-side code, where endpoints and server features are defined
+2. A package for client-side code, which is auto-generated to communicate with the server
+3. A Flutter app folder where your Flutter app lives.
+
+
+```
+.
+- mypod_server/
+- mypod_client/
+- mypod_flutter/
+```
+
+### Serialising objects (fromJson, toJson)
+Serverpod provides a way to serialise and deserialise objects to and from JSON, which is useful for communicating between the client and server.
+```yaml
+### mypod_server/lib/src/model/note.yaml
+class: Note
+fields:
+  ### The contents of the note.
+  text: String
+```
+
+This generates a Note class in mypod_client, which is used by the Flutter app to serialise and deserialise objects easily, e.g.:
+
+
+```dart
+// mypod_flutter/lib/main.dart
+import 'package:mypod_client/mypod_client.dart';
+
+void main() {
+  final note = Note()
+    ..text = 'Hello world!';
+  final json = note.toJson(); // {"text": "Hello world!"}
+  final note2 = Note.fromJson(json); // Note()..text = 'Hello world!'
+}
+```
+
+### Database ORM
+Serverpod provides an ORM for interacting with the database, which is useful for creating, reading, updating and deleting objects from the database. Think prisma but for dart.
+
+```yaml
+### mypod_server/lib/src/model/note.yaml
+class: Note
+table: note
+...
+```
+
+Serverpod also comes with a preconfigured Postgresql docker instance, which you can connect to from your Flutter app in local dev.
+
+```yaml
+### development.yaml
+database:
+  host: localhost
+  port: 8090
+  name: <YOUR_PROJECT_NAME>
+  user: postgres
+```
+
+```yaml
+### mypod_server/lib/src/model/note.yaml
+class: Note
+table: note
+```
+
+### Angel
+
+### Aqueduct
+
+### Alfred
+
+### Shelf
+
+### Conduit
+
+### Raw dart
+https://www.reddit.com/r/dartlang/comments/18tey45/state_of_backend_with_dart_language/
+
+
+## Conclusion
