@@ -1,7 +1,7 @@
 export default function Page() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="mb-4 text-3xl font-bold text-primary-500">Social Games Privacy Policy</h1>
+      <h1 className="mb-4 text-3xl font-bold text-primary-500">Eco Toss Privacy Policy</h1>
 
       <div className="mb-6">
         <h2 className="mb-2 text-2xl font-semibold text-gray-800">
@@ -9,7 +9,6 @@ export default function Page() {
         </h2>
         <ul className="list-disc space-y-1 pl-5">
           <li>Name</li>
-          <li>Email Address</li>
         </ul>
       </div>
 
@@ -23,7 +22,7 @@ export default function Page() {
         </p>
         <ul className="mb-2 list-disc space-y-1 pl-5">
           <li>
-            When you sign in to the app and use your real name as your display name, it is stored in
+            When you submit a highscore and use your real name as your display name, it is stored in
             our servers.
           </li>
         </ul>
@@ -32,12 +31,7 @@ export default function Page() {
           scenarios:
         </p>
         <ul className="mb-2 list-disc space-y-1 pl-5">
-          <li>
-            When you sign in to the app using Continue with Google/Apple, we may receive your name
-            and email address from Google/Apple. However, this information is only made available to
-            us at the point of signing in, and it is not stored within our servers. We use the
-            information that you have given us in order to authenticate your account.
-          </li>
+          <li>Not applicable.</li>
         </ul>
         <p>
           Under the UK General Data Protection Regulation (UK GDPR), the lawful bases we rely on for
@@ -48,10 +42,10 @@ export default function Page() {
             Your consent. You are able to remove your consent at any time. You can do this by
             deleting your account by contacting{' '}
             <a
-              href="mailto:justin@kek.technology"
+              href="mailto:calms-notice.0g@icloud.com"
               className="text-primary-500 hover:text-primary-600"
             >
-              justin@kek.technology
+              calms-notice.0g@icloud.com
             </a>
             .
           </li>
@@ -100,8 +94,14 @@ export default function Page() {
           we have one month to respond to you.
         </p>
         <p>
-          Please contact us at [insert email address, phone number, and/or postal address] if you
-          wish to make a request.
+          Please contact us at{' '}
+          <a
+            href="mailto:calms-notice.0g@icloud.com"
+            className="text-primary-500 hover:text-primary-600"
+          >
+            calms-notice.0g@icloud.com
+          </a>{' '}
+          if you wish to make a request.
         </p>
       </div>
 
@@ -111,10 +111,10 @@ export default function Page() {
           If you have any concerns about our use of your personal information, you can make a
           complaint to us at{' '}
           <a
-            href="mailto:justin@kek.technology"
+            href="mailto:calms-notice.0g@icloud.com"
             className="text-primary-500 hover:text-primary-600"
           >
-            justin@kek.technology
+            calms-notice.0g@icloud.com
           </a>
           .
         </p>
