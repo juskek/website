@@ -56,16 +56,25 @@ export default function PostLayout({
             </div>
             <div className="divide-y divide-gray-200  md:col-span-3 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
-              {tags && (
-                <div className="py-4 md:py-8">
-                  <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Tags</h2>
-                  <div className="flex flex-wrap">
-                    {tags.map((tag) => (
-                      <Tag key={tag} text={tag} />
-                    ))}
+              <div className="flex flex-row items-center justify-between py-4 md:py-8">
+                {tags && (
+                  <div>
+                    <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Tags</h2>
+                    <div className="flex flex-wrap">
+                      {tags.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+                <Link
+                  href={`/${basePath}`}
+                  className="text-primary-500 hover:text-primary-600 "
+                  aria-label="Back to the blog"
+                >
+                  &larr; Back to the blog
+                </Link>
+              </div>
               <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
                 {(next || prev) && (
                   <div className="flex justify-between py-4 md:block md:space-y-8 md:py-8">
@@ -88,17 +97,7 @@ export default function PostLayout({
               )}
             </div>
 
-            <footer>
-              <div className="pt-4 md:pt-8">
-                <Link
-                  href={`/${basePath}`}
-                  className="text-primary-500 hover:text-primary-600 "
-                  aria-label="Back to the blog"
-                >
-                  &larr; Back to the blog
-                </Link>
-              </div>
-            </footer>
+            <footer></footer>
           </div>
         </div>
       </article>
