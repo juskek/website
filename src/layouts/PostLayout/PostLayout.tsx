@@ -74,8 +74,12 @@ export default function PostLayout({
             </div>
           </div>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
-            <div className="top-0 self-start md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
-              <TableOfContents nodes={headings} />
+            <div className="top-0 self-start  p-2 md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
+              <div className="rounded-xl border border-solid">
+                <div className="p-2">
+                  <TableOfContents nodes={headings} />
+                </div>
+              </div>
             </div>
             <div className="divide-y divide-gray-200  md:col-span-4 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
