@@ -56,6 +56,16 @@ export default function PostLayout({
             </div>
             <div className="divide-y divide-gray-200  md:col-span-3 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
+              {tags && (
+                <div className="py-4 md:py-8">
+                  <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Tags</h2>
+                  <div className="flex flex-wrap">
+                    {tags.map((tag) => (
+                      <Tag key={tag} text={tag} />
+                    ))}
+                  </div>
+                </div>
+              )}
               <div className="pb-6 pt-6 text-sm text-gray-700 ">
                 <Link href={discussUrl(path)} rel="nofollow">
                   Discuss on Twitter
@@ -72,16 +82,6 @@ export default function PostLayout({
 
             <footer>
               <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
-                {tags && (
-                  <div className="py-4 md:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 ">Tags</h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
-                    </div>
-                  </div>
-                )}
                 {(next || prev) && (
                   <div className="flex justify-between py-4 md:block md:space-y-8 md:py-8">
                     <PreviousPost prev={prev} />
