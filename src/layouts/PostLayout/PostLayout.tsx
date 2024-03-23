@@ -55,21 +55,23 @@ export default function PostLayout({
             locale={siteMetadata.locale}
             bannerImage={bannerImage}
           />
-          <div className="flex flex-row">
+          <div className="flex flex-row items-center justify-between">
             <PostAuthors authorDetails={authorDetails} />
-            <div className="flex justify-center p-2 text-sm text-gray-500">
-              <span>{readingTime.text}</span>
-            </div>
-            <dl className="space-y-10">
-              <div>
-                <dt className="sr-only">Published on</dt>
-                <dd className="text-base font-medium leading-6 text-gray-500 ">
-                  <time dateTime={date}>
-                    {new Date(date).toLocaleDateString(locale, postDateTemplate)}
-                  </time>
-                </dd>
+            <div className="flex flex-col items-end">
+              <dl className="space-y-10">
+                <div>
+                  <dt className="sr-only">Published on</dt>
+                  <dd className="text-base font-medium leading-6 text-gray-500 ">
+                    <time dateTime={date}>
+                      {new Date(date).toLocaleDateString(locale, postDateTemplate)}
+                    </time>
+                  </dd>
+                </div>
+              </dl>
+              <div className="flex justify-center p-2 text-sm text-gray-500">
+                <span>{readingTime.text}</span>
               </div>
-            </dl>
+            </div>
           </div>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
             <div className="top-0 self-start md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
