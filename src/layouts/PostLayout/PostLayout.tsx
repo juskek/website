@@ -47,9 +47,13 @@ export default function PostLayout({
             date={date}
             locale={siteMetadata.locale}
             bannerImage={bannerImage}
-            readingTime={readingTime}
           />
-          <PostAuthors authorDetails={authorDetails} />
+          <div className="flex flex-row">
+            <PostAuthors authorDetails={authorDetails} />
+            <div className="flex justify-center p-2 text-sm text-gray-500">
+              <span>{readingTime.text}</span>
+            </div>
+          </div>
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
             <div className="top-0 self-start md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
               <TableOfContents nodes={headings} />
