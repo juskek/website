@@ -66,6 +66,14 @@ export default function PostLayout({
                   </div>
                 </div>
               )}
+              <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
+                {(next || prev) && (
+                  <div className="flex justify-between py-4 md:block md:space-y-8 md:py-8">
+                    <PreviousPost prev={prev} />
+                    <NextPost next={next} />
+                  </div>
+                )}
+              </div>
               <div className="pb-6 pt-6 text-sm text-gray-700 ">
                 <Link href={discussUrl(path)} rel="nofollow">
                   Discuss on Twitter
@@ -81,14 +89,6 @@ export default function PostLayout({
             </div>
 
             <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
-                {(next || prev) && (
-                  <div className="flex justify-between py-4 md:block md:space-y-8 md:py-8">
-                    <PreviousPost prev={prev} />
-                    <NextPost next={next} />
-                  </div>
-                )}
-              </div>
               <div className="pt-4 md:pt-8">
                 <Link
                   href={`/${basePath}`}
