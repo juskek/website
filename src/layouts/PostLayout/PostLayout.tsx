@@ -50,11 +50,11 @@ export default function PostLayout({
             readingTime={readingTime}
           />
           <PostAuthors authorDetails={authorDetails} />
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-5 md:gap-x-6 md:divide-y-0">
-            <div className="top-0 self-start md:sticky md:col-start-5 md:row-span-full md:row-start-1">
+          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
+            <div className="top-0 self-start md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
               <TableOfContents nodes={headings} />
             </div>
-            <div className="divide-y divide-gray-200  md:col-span-3 md:row-span-2 md:pb-0">
+            <div className="divide-y divide-gray-200  md:col-span-4 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
               <div className="flex flex-row items-center justify-between py-4 md:py-8">
                 {tags && (
@@ -77,7 +77,7 @@ export default function PostLayout({
               </div>
               <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
                 {(next || prev) && (
-                  <div className="flex justify-between py-4 md:block md:space-y-8 md:py-8">
+                  <div className="flex flex-row justify-between py-4 md:block md:space-y-8 md:py-8">
                     <PreviousPost prev={prev} />
                     <NextPost next={next} />
                   </div>
