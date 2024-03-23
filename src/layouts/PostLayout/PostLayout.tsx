@@ -49,8 +49,8 @@ export default function PostLayout({
             bannerImage={bannerImage}
             readingTime={readingTime}
           />
+          <PostAuthors authorDetails={authorDetails} />
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-5 md:gap-x-6 md:divide-y-0">
-            <PostAuthors authorDetails={authorDetails} />
             <div className="top-0 self-start md:sticky md:col-start-5 md:row-span-full md:row-start-1">
               <TableOfContents nodes={headings} />
             </div>
