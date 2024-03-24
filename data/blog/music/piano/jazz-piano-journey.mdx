@@ -1,26 +1,30 @@
 ---
-title: My Jazz Piano Journey
+title: My Jazz Piano Journal
 date: '2024-03-23'
-tags: ['flutter', 'react native']
+tags: ['music', 'piano', 'jazz']
 draft: false
 summary: 'Hi'
-bannerImage: '/static/blog/flutter-vs-react-native/3-as-a-cto/images/image.png'
+bannerImage: '/static/blog/piano/piano.webp'
 ---
 
 
-## Introduction
+## Note Clusters
 
-
-Welcome to this blog post where I discuss music notation.
-
-Here's a simple example of a musical score:
-
+### Standard Chromatic
 
 ```lilypond
 {
   \clef treble
-  \time 4/4
-  c'4 e' g' e' |
+  \omit TimeSignature
+  \relative c' {
+    c8-1 cis-2 d-3 dis-4
+    e-1 f-2 fis-3 r8
+    g-1 gis-2 a-3 ais-4
+    b-1 c-2 cis-3 r8
+    d-1 dis-2 e-3 r8
+    f-1 fis-2 g-3 gis-4
+    a-1 ais-2 b-3 c-4
+    }
 }
 ```
 
