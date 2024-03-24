@@ -81,3 +81,84 @@ bannerImage: '/static/blog/piano/piano.webp'
 	- 4312
 	- 4321
 </details>
+
+#### 3 Note Cycles
+
+```lilypond
+{
+  \clef treble
+  \omit TimeSignature
+  \relative c' {
+    \tuplet 3/2 { 
+      c8 cis d 
+      d dis e
+      e f fis
+      f fis g
+      g gis a
+      a ais b
+      b c cis
+      c cis d
+      }
+    }
+}
+```
+Use index and third finger
+
+#### 5 Note Cycles
+
+#### 6 Note Cycles
+
+#### 7 Note Cycles
+
+
+#### Chromatic Cycles on C Thirds
+
+```lilypond
+{
+  \clef treble
+  \omit TimeSignature
+  \relative c' {
+    c8 cis d dis
+    e f fis g
+    d dis e f
+    f fis g gis
+    e f fis g
+    g gis a ais
+    f fis g gis
+    a ais b c
+    g gis a ais
+    b c cis d
+    a ais b c
+    c cis d dis
+    b c cis d
+    d dis e f
+    c cis d dis
+    }
+}
+```
+
+#### Chromatic Cycles on Chromatic Scale
+
+#### Repeat previous drills on all major scales
+
+### Interval Cycles on C scale
+	- semitone+tone
+		- tone-semitone-semitone
+		- semitone-tone-semitone
+		- semitone-semitone-tone
+		- tone-tone-semitone
+		- semitone-tone-tone
+		- tone-tone-tone
+
+### 4 Note Cycles on Diminished Scale
+Built from notes in C7b9 + Cdim7 + C#dim7
+
+```lilypond
+{
+  \clef treble
+  \omit TimeSignature
+  \relative c' {
+    c8 cis dis e fis g a bes
+    }
+}
+```
