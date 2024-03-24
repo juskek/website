@@ -28,3 +28,56 @@ bannerImage: '/static/blog/piano/piano.webp'
 }
 ```
 
+### Chromatic Cycles
+
+#### 4 Note Cycles
+
+```lilypond
+{
+  \clef treble
+  \omit TimeSignature
+  \relative c' {
+    c8 cis d dis
+    d dis e f
+    e f fis g
+    f fis g gis
+    g gis a ais
+    a ais b c
+    b c cis d
+    c cis d dis
+    }
+}
+```
+
+<details closed>
+<summary>Permutations</summary>
+
+- Starting with 1
+	- 1234
+	- 1243
+	- 1324
+	- 1342
+	- 1423
+	- 1432
+- Starting with 2
+	- 2134
+	- 2143
+	- 2314
+	- 2341
+	- 2413
+	- 2431
+- Starting with 3
+	- 3124
+	- 3142
+	- 3214
+	- 3241
+	- 3412
+	- 3421
+- Starting with 4
+	- 4123
+	- 4132
+	- 4213
+	- 4231
+	- 4312
+	- 4321
+</details>
