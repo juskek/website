@@ -1,7 +1,6 @@
 import PageTitle from '@/components/PageTitle'
 import type { Authors } from 'contentlayer/generated'
 import Image from 'next/image'
-import Bleed from 'pliny/ui/Bleed'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { PostAuthors } from './Authors/PostAuthors'
 
@@ -55,12 +54,10 @@ export const PostHeader = ({
         </div>
 
         {bannerImage && (
-          <div className="w-full">
-            <Bleed>
-              <div className="relative aspect-[1/1] w-full sm:aspect-[1.5/1] md:aspect-[2/1] lg:aspect-[2.5/1] xl:aspect-[3/1]">
-                <Image src={bannerImage} alt={title} fill className="object-contain" />
-              </div>
-            </Bleed>
+          <div className="w-full bg-black">
+            <div className="relative aspect-[1/1] w-full sm:aspect-[1.5/1] md:aspect-[2/1] lg:aspect-[2.5/1] xl:aspect-[3/1]">
+              <Image src={bannerImage} alt={title} fill className="object-cover" />
+            </div>
           </div>
         )}
       </div>
