@@ -3,22 +3,14 @@ import Link from '@/components/Link'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 import SectionContainer from '@/components/SectionContainer'
 import Tag from '@/components/Tag'
-import siteMetadata, { locale } from '@/data/siteMetadata'
+import siteMetadata from '@/data/siteMetadata'
 import type { Authors, Blog } from 'contentlayer/generated'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { ReactNode } from 'react'
-import { PostAuthors } from './Authors/PostAuthors'
 import { NextPost } from './NextPost'
 import { PostHeader } from './PostHeader'
 import { PreviousPost } from './PreviousPost'
 import { TableOfContents } from './TableOfContents/TableOfContents'
-
-const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
-}
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -56,27 +48,9 @@ export default function PostLayout({
                 date={date}
                 locale={siteMetadata.locale}
                 bannerImage={bannerImage}
+                authorDetails={authorDetails}
+                readingTime={readingTime}
               />
-            </div>
-            <div className="col-span-4 col-start-1 row-start-2">
-              <div className="flex flex-row items-center justify-between">
-                <PostAuthors authorDetails={authorDetails} />
-                <div className="flex flex-col items-end">
-                  <dl className="space-y-10">
-                    <div>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 ">
-                        <time dateTime={date}>
-                          {new Date(date).toLocaleDateString(locale, postDateTemplate)}
-                        </time>
-                      </dd>
-                    </div>
-                  </dl>
-                  <div className="flex justify-center p-2 text-sm text-gray-500">
-                    <span>{readingTime.text}</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="top-0 self-start  p-2 md:sticky md:col-span-2 md:col-start-5 md:row-span-full md:row-start-1">
