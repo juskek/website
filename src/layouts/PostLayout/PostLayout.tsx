@@ -49,15 +49,16 @@ export default function PostLayout({
       <ScrollTopAndComment />
       <article>
         <div className="">
-          <PostHeader
-            title={title}
-            date={date}
-            locale={siteMetadata.locale}
-            bannerImage={bannerImage}
-          />
-
           <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
             <div className="col-span-4 col-start-1 row-start-1">
+              <PostHeader
+                title={title}
+                date={date}
+                locale={siteMetadata.locale}
+                bannerImage={bannerImage}
+              />
+            </div>
+            <div className="col-span-4 col-start-1 row-start-2">
               <div className="flex flex-row items-center justify-between">
                 <PostAuthors authorDetails={authorDetails} />
                 <div className="flex flex-col items-end">
