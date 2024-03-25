@@ -13,6 +13,8 @@ export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
   return (
     <header className="pt-6 xl:pb-6">
       <div className="space-y-1">
+        <PageTitle>{title}</PageTitle>
+
         {bannerImage && (
           <div className="w-full">
             <Bleed>
@@ -22,9 +24,6 @@ export const PostHeader = ({ title, date, locale, bannerImage }: Props) => {
             </Bleed>
           </div>
         )}
-        <div>
-          <PageTitle>{title}</PageTitle>
-        </div>
       </div>
     </header>
   )
