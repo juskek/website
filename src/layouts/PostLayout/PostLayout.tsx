@@ -48,7 +48,7 @@ export default function PostLayout({
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className="md: md:divide-y md:divide-gray-200">
+        <div className="">
           <PostHeader
             title={title}
             date={date}
