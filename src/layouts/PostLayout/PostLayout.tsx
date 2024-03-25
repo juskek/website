@@ -41,7 +41,7 @@ export default function PostLayout({
       <ScrollTopAndComment />
       <article>
         <div className="">
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6 md:divide-y-0">
+          <div className="grid-rows-[auto_1fr] divide-gray-200 pb-8  md:grid md:grid-cols-6 md:gap-x-6">
             <div className="col-span-4 col-start-1 row-start-1">
               <PostHeader
                 title={title}
@@ -60,7 +60,7 @@ export default function PostLayout({
                 </div>
               </div>
             </div>
-            <div className="divide-y divide-gray-200  md:col-span-4 md:row-span-2 md:pb-0">
+            <div className=" md:col-span-4 md:row-span-2 md:pb-0">
               <div className="prose max-w-none pb-8 pt-10 ">{children}</div>
               <div className="flex flex-row items-center justify-between py-4 md:py-8">
                 {tags && (
@@ -81,7 +81,7 @@ export default function PostLayout({
                   &larr; Back to the blog
                 </Link>
               </div>
-              <div className="divide-gray-200 text-sm font-medium leading-5  md:col-start-1 md:row-start-2 md:divide-y">
+              <div className="text-sm font-medium leading-5  md:col-start-1 md:row-start-2">
                 {(next || prev) && (
                   <div className="flex flex-row justify-between py-4 md:block md:space-y-8 md:py-8">
                     <PreviousPost prev={prev} />
