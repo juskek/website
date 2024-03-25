@@ -48,7 +48,7 @@ bannerImage: '/static/blog/piano/piano.webp'
 }
 ```
 
-<details closed>
+<details closed="true">
 <summary>Permutations</summary>
 
 - Starting with 1
@@ -179,5 +179,42 @@ Built from notes in C7b9 + Cdim7 + C#dim7
     f8 fis a bes
     c des ees e
   }
+}
+```
+
+#### Art Tatum - Tea for Two
+- Start from F on right hand + C7 on left hand
+	- Ascend
+	- Descend
+	- Contrary Motion
+- Diatonic 3rds from Db scale
+
+```lilypond
+{
+  \new PianoStaff <<
+    \new Staff {
+       \relative c'' { 
+        <f ges bes>
+        <e f aes>
+        <d ees g>
+        <c des f>
+        <b c ees>
+        <a bes des>
+        <g aes c>
+      }
+    }
+    \new Staff {
+      \clef bass
+      \relative c { 
+        <c e bes'>
+        <b dis a'>
+        <bes d aes'>
+        <a cis g'>
+        <aes c ges'>
+        <g b f'>
+        <ges bes fes'>
+      }
+    }
+  >>
 }
 ```
