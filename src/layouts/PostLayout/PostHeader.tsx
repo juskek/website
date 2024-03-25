@@ -29,7 +29,7 @@ export const PostHeader = ({
   readingTime,
 }: Props) => {
   return (
-    <header className="pt-6 xl:pb-6">
+    <header className="xl:pb-6">
       <div className="space-y-1">
         <PageTitle>{title}</PageTitle>
         <div className="col-span-4 col-start-1 row-start-2">
