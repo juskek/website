@@ -1,0 +1,114 @@
+---
+title: Software Engineering at Scale
+date: '2024-04-08'
+tags: ['software engineering', 'scalability', 'reliability']
+draft: false
+summary: ''
+bannerImage: '/static/blog/software-engineering/software-engineering-at-scale/scale.webp'
+---
+
+## Introduction
+
+It has been three years since I transitioned from mechanical engineering to software development and I have been fortunate to work on a variety of projects through freelancing and my time at Theodo. I've reached the stage where the answer to the questions "How can we implement this feature?" and "How do we create this with the least amount of waste?" come quite naturally. After some thought, I realised that the next question I need to answer is "How can we scale this system?". 
+
+Consequently, I have decided to write this article to share my thoughts on software engineering at scale. This article will broadly answer the following questions:
+
+- What do we scale?
+- When do we scale?
+- How do we scale?
+
+
+
+## Concepts & Tech
+
+### Compute intensive vs Data intensive
+
+Data intensive means that data quantity, complexity, or speed of change is the primary challenge.
+
+Compute intensive means that the CPU cycles are the main bottleneck.
+
+### Frontend
+What is SEO? Optimising your website to rank higher on search engines.
+
+What affects SEO? Crawl budget, page speed, mobile friendliness, metadata, structured data.
+
+What is SSR? 
+It is the rendering of HTML on the server side, and sending it to the client. This is useful for SEO, and for performance.
+
+What is SSG? It is the rendering of HTML at build time.
+
+What is ISR? It is the rendering of HTML at build time, and then revalidating it after a certain period.
+
+What is caching? It is the storing of data in a temporary storage so that it can be accessed quickly. This can happen anywhere between the source and the destination.
+
+What is a CDN? It is a network of servers that deliver content to users based on their geographic location.
+
+What is federated learning? It is a machine learning approach that trains an algorithm across multiple devices or servers while keeping the data on the device or server. Instead, only the model updates are sent to a central server.
+
+What is event-driven architecture? It is a software architecture pattern promoting the production, detection, consumption of, and reaction to events. The flow of logic is initiated by events.
+
+What is request-driven architecture? It is a software architecture pattern where the client sends a request to the server, and the server sends a response back. The flow of logic is initiated by requests.
+
+What is monolithic architecture? It is a software architecture pattern where an application (UI, business logic, services and data access) is built as a single unit.
+
+What is service-oriented architecture? It is a software architecture pattern where an application has multiple coarse-grained services that communicate with each other to deliver a common goal. They typically communicate through Enterprise Service Buses. E.g. CQRS with Event Bus in Nest
+
+What is microservices architecture? It is a software architecture pattern where the application is built as a collection of fine-grained services. They typically communicate through HTTP or message queues to avoid central points of failure
+
+What is backend for frontend (BFF)? It is a software architecture pattern where a backend is built specifically for a frontend. This is opposed to a monolithic backend that serves multiple frontends.
+
+What is domain driven design? It is a software design approach that models the software to match the business domain. It takes the principles of OOP and standardises terminology in a way that is understandable to both developers and business stakeholders.
+
+
+What is server-based architecture? It is a software architecture pattern where the application is built using servers.
+
+What is serverless architecture? It is a software architecture pattern where the application is built using cloud services, and the developer does not have to manage the infrastructure. This is opposed to traditional server-based architecture.
+
+What is data-driven architecture? It is a software architecture pattern that prioritises the use of data to inform decision-making. This is opposed to 
+NoSQL
+
+What is a distributed system? It is a system where multiple computers share resources and conduct activities, coordinated by a distribution middleware.
+
+What is load balancing? It is the process of distributing incoming network traffic across multiple servers. 
+
+What is stateless architecture? It is a software architecture pattern where the server does not store any state about the client. Each request must contain all necessary information. This is opposed to stateful architecture.
+
+What is stateful architecture? It is a software architecture pattern where the server stores state about the client. This is opposed to stateless architecture.
+
+
+What is Command Query Responsibility Segregation (CQRS) Architecture? It is the separation of read and write operations in a system. 
+
+What is Create, Read, Update, Delete (CRUD) Architecture? It is a software architecture pattern that models the four basic functions of persistent storage.
+
+What is event sourcing? It is a software architecture pattern where the state of the application is determined by a sequence of events. 
+
+What is sharding? It is the process of splitting a database into smaller, more manageable parts.
+
+What is batch parallelisation? It is the process of splitting a task into smaller parts and running them concurrently.
+
+What is distributed learning? It is the process of training a machine learning model using a distributed system.
+
+What is containerisation? It is the process of packaging an application and its dependencies into a container.
+
+What is a container? It is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another.
+
+What is orchestration? It is the process of automating the deployment, scaling, and management of containerised applications. E.g. kubernetes
+
+
+
+Big Data
+Web scale
+Sharding
+Eventual consistency
+ACID
+CAP theorem
+MapReduce
+Real-time
+
+
+### Backend 
+
+### Caching
+
+### Event Driven Architecture 
+
