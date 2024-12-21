@@ -42,7 +42,7 @@ export default function HomePage() {
           fov: 45,
         }}
       >
-        <ambientLight intensity={4} />
+        <ambientLight intensity={3} />
         <directionalLight position={[5, 5, 5]} />
         <ModelWithTexture />
         <OrbitControls />
