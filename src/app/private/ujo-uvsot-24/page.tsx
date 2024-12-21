@@ -5,6 +5,8 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
 import { MeshStandardMaterial } from 'three'
 
+const rotationSpeed = 0.01
+
 function ModelWithTexture() {
   const { scene, materials } = useGLTF('/static/models/peony/model.glb')
   const texture = useTexture('/static/models/peony/texture.jpeg')
@@ -23,10 +25,9 @@ function ModelWithTexture() {
     }
   }, [materials, texture])
 
-  // Rotate the model on each frame
   useFrame(() => {
     if (modelRef.current) {
-      modelRef.current.rotation.y += 0.01 // Adjust the speed of rotation here
+      modelRef.current.rotation.y += rotationSpeed
     }
   })
 
