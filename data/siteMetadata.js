@@ -14,6 +14,7 @@ const siteMetadata = {
   email: 'justink@theodo.co.uk',
   github: 'https://github.com/juskek',
   twitter: 'https://twitter.com/justin_kek',
+  spotify: 'https://open.spotify.com/artist/6nc0mAjJqYcNozFsb2CR1S?si=-hD3YP4ESGqHa1SHxdCG-w',
   // facebook: 'https://facebook.com',
   youtube: 'https://www.youtube.com/channel/UChN5uDlmtNVENSC4s9ukr4w',
   linkedin: 'https://www.linkedin.com/in/justinkek/',
