@@ -3,7 +3,7 @@
 import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useEffect, useRef } from 'react'
-import { MeshStandardMaterial } from 'three'
+import { MeshStandardMaterial, Object3D } from 'three'
 
 const rotationSpeed = 0.01
 
@@ -11,8 +11,7 @@ function ModelWithTexture() {
   const { scene, materials } = useGLTF('/static/models/peony/model.glb')
   const texture = useTexture('/static/models/peony/texture.jpeg')
 
-  // Ref to access the model's scene
-  const modelRef = useRef()
+  const modelRef = useRef<Object3D>(null)
 
   useEffect(() => {
     if (materials && texture) {
