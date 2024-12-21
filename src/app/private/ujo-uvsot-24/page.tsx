@@ -78,7 +78,7 @@ export default function HomePage() {
       {!loading && (
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           <h1
-            className={`pointer-events-auto cursor-pointer text-6xl font-bold text-black transition-opacity duration-${fadeDurationMs} ${
+            className={`pointer-events-auto cursor-pointer text-center text-6xl font-bold text-black transition-opacity duration-${fadeDurationMs} ${
               isFading ? 'opacity-0' : 'opacity-100'
             }`}
             onClick={handleTextClick}
