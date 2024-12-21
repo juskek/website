@@ -36,7 +36,12 @@ function ModelWithTexture() {
 export default function HomePage() {
   return (
     <div className="h-screen w-screen">
-      <Canvas>
+      <Canvas
+        camera={{
+          position: [0, 2, 5],
+          fov: 45,
+        }}
+      >
         <ambientLight intensity={4} />
         <directionalLight position={[5, 5, 5]} />
         <ModelWithTexture />
