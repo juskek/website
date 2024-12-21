@@ -75,16 +75,18 @@ export default function HomePage() {
         <ModelWithTexture setLoading={setLoading} />
         <OrbitControls />
       </Canvas>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <h1
-          className={`pointer-events-auto cursor-pointer text-6xl font-bold text-black transition-opacity duration-${fadeDurationMs} ${
-            isFading ? 'opacity-0' : 'opacity-100'
-          }`}
-          onClick={handleTextClick}
-        >
-          {messages[messageIndex]}
-        </h1>
-      </div>
+      {!loading && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <h1
+            className={`pointer-events-auto cursor-pointer text-6xl font-bold text-black transition-opacity duration-${fadeDurationMs} ${
+              isFading ? 'opacity-0' : 'opacity-100'
+            }`}
+            onClick={handleTextClick}
+          >
+            {messages[messageIndex]}
+          </h1>
+        </div>
+      )}
     </div>
   )
 }
