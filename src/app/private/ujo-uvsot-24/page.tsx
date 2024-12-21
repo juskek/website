@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 'use client'
 
 import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
@@ -39,6 +41,10 @@ function ModelWithTexture({ setLoading }) {
 export default function HomePage() {
   const [loading, setLoading] = useState(true)
 
+  const handleTextClick = () => {
+    console.log('Text clicked!')
+  }
+
   return (
     <div className="h-screen w-screen">
       {loading && (
@@ -58,8 +64,8 @@ export default function HomePage() {
         <ModelWithTexture setLoading={setLoading} />
         <OrbitControls />
       </Canvas>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-        <h1 className="text-6xl font-bold text-black">Hello</h1>
+      <div className="absolute inset-0 flex items-center justify-center" onClick={handleTextClick}>
+        <h1 className="cursor-pointer text-6xl font-bold text-black">Hello</h1>
       </div>
     </div>
   )
