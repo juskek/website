@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 'use client'
+'use client'
 
 import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
@@ -10,6 +11,7 @@ import { MeshStandardMaterial, Object3D } from 'three'
 import { TeaLoadingIndicator } from './TeaLoadingIndicator'
 
 const rotationSpeed = 0.01
+const fadeDurationMs = 500
 
 function ModelWithTexture({ setLoading }) {
   const { scene, materials } = useGLTF('/static/models/peony/model.glb', true) // Enable loading state
@@ -41,9 +43,17 @@ function ModelWithTexture({ setLoading }) {
 
 export default function HomePage() {
   const [loading, setLoading] = useState(true)
+  const [messageIndex, setMessageIndex] = useState(0)
+  const [isFading, setIsFading] = useState(false)
+
+  const messages = ['Welcome!', 'Explore the 3D World', 'Click to Discover']
 
   const handleTextClick = () => {
-    console.log('Text clicked!')
+    setIsFading(true)
+    setTimeout(() => {
+      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length)
+      setIsFading(false)
+    }, fadeDurationMs) // Match the duration of the fade-out animation
   }
 
   return (
@@ -67,10 +77,12 @@ export default function HomePage() {
       </Canvas>
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <h1
-          className="pointer-events-auto cursor-pointer text-6xl font-bold text-black"
+          className={`pointer-events-auto cursor-pointer text-6xl font-bold text-black transition-opacity duration-${fadeDurationMs} ${
+            isFading ? 'opacity-0' : 'opacity-100'
+          }`}
           onClick={handleTextClick}
         >
-          Hello
+          {messages[messageIndex]}
         </h1>
       </div>
     </div>
