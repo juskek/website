@@ -46,6 +46,7 @@ export default function HomePage() {
           <TeaLoadingIndicator />
         </div>
       )}
+
       <Canvas
         camera={{
           position: [0, 2, 5],
@@ -57,6 +58,9 @@ export default function HomePage() {
         <ModelWithTexture setLoading={setLoading} />
         <OrbitControls />
       </Canvas>
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <h1 className="text-6xl font-bold text-black">Hello</h1>
+      </div>
     </div>
   )
 }
