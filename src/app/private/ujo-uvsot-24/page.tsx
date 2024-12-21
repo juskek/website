@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 'use client'
@@ -64,8 +65,10 @@ export default function HomePage() {
         <ModelWithTexture setLoading={setLoading} />
         <OrbitControls />
       </Canvas>
-      <div className="absolute inset-0 flex items-center justify-center" onClick={handleTextClick}>
-        <h1 className="cursor-pointer text-6xl font-bold text-black">Hello</h1>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <h1 className="cursor-pointer text-6xl font-bold text-black" onClick={handleTextClick}>
+          Hello
+        </h1>
       </div>
     </div>
   )
