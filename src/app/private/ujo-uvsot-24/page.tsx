@@ -37,7 +37,7 @@ export default function HomePage() {
   return (
     <div className="h-screen w-screen">
       <Canvas>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={4} />
         <directionalLight position={[5, 5, 5]} />
         <ModelWithTexture />
         <OrbitControls />
