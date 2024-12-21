@@ -1,13 +1,16 @@
 'use client'
 
 import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
-import { Canvas } from '@react-three/fiber'
-import { useEffect } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import { useEffect, useRef } from 'react'
 import { MeshStandardMaterial } from 'three'
 
 function ModelWithTexture() {
   const { scene, materials } = useGLTF('/static/models/peony/model.glb')
   const texture = useTexture('/static/models/peony/texture.jpeg')
+
+  // Ref to access the model's scene
+  const modelRef = useRef()
 
   useEffect(() => {
     if (materials && texture) {
@@ -20,7 +23,14 @@ function ModelWithTexture() {
     }
   }, [materials, texture])
 
-  return <primitive object={scene} />
+  // Rotate the model on each frame
+  useFrame(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.01 // Adjust the speed of rotation here
+    }
+  })
+
+  return <primitive object={scene} ref={modelRef} />
 }
 
 export default function HomePage() {
