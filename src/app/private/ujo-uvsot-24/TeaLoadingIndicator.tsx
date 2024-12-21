@@ -4,9 +4,9 @@ export const TeaLoadingIndicator = () => (
   <div className="loading-container">
     <svg
       className="tea"
-      width="37"
+      width="48"
       height="48"
-      viewBox="0 0 37 48"
+      viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
