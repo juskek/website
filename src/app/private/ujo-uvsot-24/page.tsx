@@ -46,7 +46,7 @@ export default function HomePage() {
   const [messageIndex, setMessageIndex] = useState(0)
   const [isFading, setIsFading] = useState(false)
 
-  const messages = ['Welcome!', 'Explore the 3D World', 'Click to Discover']
+  const messages = ['hey cutie']
 
   const handleTextClick = () => {
     setIsFading(true)
