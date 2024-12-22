@@ -53,11 +53,11 @@ export default function HomePage() {
     setTimeout(() => {
       setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length)
       setIsFading(false)
-    }, fadeDurationMs) // Match the duration of the fade-out animation
+    }, fadeDurationMs)
   }
 
   return (
-    <div className="h-screen w-screen">
+    <div className="absolute inset-0">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center">
           <TeaLoadingIndicator />
