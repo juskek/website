@@ -6,10 +6,6 @@
     "start": "next dev",
     "dev": "cross-env INIT_CWD=$PWD next dev",
     "build": "cross-env INIT_CWD=$PWD next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
-    "vercel:build:staging": "cross-env INIT_CWD=$PWD vercel build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
-    "vercel:deploy:staging": "yarn vercel:build:staging && vercel deploy --prebuilt",
-    "vercel:build:prod": "cross-env INIT_CWD=$PWD vercel build --prod && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
-    "vercel:deploy:prod": "yarn vercel:build:prod && vercel deploy --prebuilt --prod",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
@@ -44,7 +40,6 @@
     "rehype-slug": "^5.1.0",
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
-    "remark-lilypond": "^0.2.0",
     "remark-math": "^5.1.1",
     "tailwindcss": "^3.3.3",
     "three": "^0.171.0",
