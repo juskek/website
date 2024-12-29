@@ -3,57 +3,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 'use client'
 
-import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useEffect, useRef, useState } from 'react'
-import { MeshStandardMaterial, Object3D } from 'three'
+import { OrbitControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { ModelWithTexture } from './ModelWithTexture'
 import { TeaLoadingIndicator } from './TeaLoadingIndicator'
+import { usePage } from './usePage.hook'
 
-const rotationSpeed = 0.01
-const fadeDurationMs = 500
-
-function ModelWithTexture({ setLoading }) {
-  const { scene, materials } = useGLTF('/static/models/peony/model.glb', true) // Enable loading state
-  const texture = useTexture('/static/models/peony/texture.jpeg')
-  const modelRef = useRef<Object3D>(null)
-
-  useEffect(() => {
-    if (materials && texture) {
-      const material = materials['']
-      if (material && material instanceof MeshStandardMaterial) {
-        material.map = texture
-        material.needsUpdate = true
-      }
-    }
-
-    if (scene) {
-      setLoading(false) // Model has finished loading
-    }
-  }, [materials, texture, scene, setLoading])
-
-  useFrame(() => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y += rotationSpeed
-    }
-  })
-
-  return <primitive object={scene} ref={modelRef} />
-}
-
-export default function HomePage() {
-  const [loading, setLoading] = useState(true)
-  const [messageIndex, setMessageIndex] = useState(0)
-  const [isFading, setIsFading] = useState(false)
-
-  const messages = ['hey cutie']
-
-  const handleTextClick = () => {
-    setIsFading(true)
-    setTimeout(() => {
-      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length)
-      setIsFading(false)
-    }, fadeDurationMs)
-  }
+export default function Page() {
+  const { loading, setLoading, isFading, handleTextClick, fadeDurationMs, message } = usePage()
 
   return (
     <div className="absolute inset-0">
@@ -82,7 +39,7 @@ export default function HomePage() {
             }`}
             onClick={handleTextClick}
           >
-            {messages[messageIndex]}
+            {message}
           </h1>
         </div>
       )}
