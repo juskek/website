@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 'use client'
-'use client'
 
 import { OrbitControls, useGLTF, useTexture } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
