@@ -10,11 +10,6 @@ export default function Page() {
 
   return (
     <div className="relative h-[70vh] w-full">
-      {loading && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <TeaLoadingIndicator />
-        </div>
-      )}
       <div className="absolute inset-0">
         <ModelCanvas setLoading={setLoading}></ModelCanvas>
       </div>
@@ -25,6 +20,12 @@ export default function Page() {
           fadeDurationMs={fadeDurationMs}
           message={message}
         />
+      )}
+
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <TeaLoadingIndicator />
+        </div>
       )}
     </div>
   )
