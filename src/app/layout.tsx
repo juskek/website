@@ -86,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="flex min-h-screen flex-col justify-between font-sans">
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                 <Header />
-                <main className="mb-auto min-h-full">{children}</main>
+                <main className="min-h-full flex-grow">{children}</main>
               </SearchProvider>
               <Footer />
             </div>
