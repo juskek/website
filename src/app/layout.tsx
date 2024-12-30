@@ -8,7 +8,6 @@ import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
-import SectionContainer from 'src/components/SectionContainer'
 import { ThemeProviders } from './theme-providers'
 
 const space_grotesk = Space_Grotesk({
@@ -84,15 +83,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <div className="min-h-screen w-screen">
-            <SectionContainer>
-              <div className="flex flex-col justify-between font-sans">
+            <div className="mx-auto min-h-screen px-4 sm:px-6 xl:px-10">
+              <div className="flex min-h-screen flex-col justify-between font-sans">
                 <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                   <Header />
-                  <main className="mb-auto">{children}</main>
+                  <main className="mb-auto min-h-full">{children}</main>
                 </SearchProvider>
                 <Footer />
               </div>
-            </SectionContainer>
+            </div>
           </div>
         </ThemeProviders>
       </body>
