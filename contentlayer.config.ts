@@ -20,7 +20,6 @@ import rehypeKatex from 'rehype-katex'
 import rehypePresetMinify from 'rehype-preset-minify'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypeSlug from 'rehype-slug'
-import remarkLilypond from 'remark-lilypond'
 import siteMetadata from './data/siteMetadata'
 
 const root = process.cwd()
@@ -141,7 +140,6 @@ export default makeSource({
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,
-      remarkLilypond,
     ],
     rehypePlugins: [
       rehypeSlug,

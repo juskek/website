@@ -24,6 +24,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
+        lavishly: ['var(--font-lavishly-yours)', 'cursive'],
       },
       colors: {
         primary: colors.purple,
