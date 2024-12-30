@@ -82,15 +82,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white text-black antialiased ">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-          <div className="min-h-screen w-screen">
-            <div className="mx-auto min-h-screen px-4 sm:px-6 xl:px-10">
-              <div className="flex min-h-screen flex-col justify-between font-sans">
-                <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
-                  <Header />
-                  <main className="mb-auto min-h-full">{children}</main>
-                </SearchProvider>
-                <Footer />
-              </div>
+          <div className="mx-auto w-screen px-4 sm:px-6 xl:px-10">
+            <div className="flex min-h-screen flex-col justify-between font-sans">
+              <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
+                <Header />
+                <main className="mb-auto min-h-full">{children}</main>
+              </SearchProvider>
+              <Footer />
             </div>
           </div>
         </ThemeProviders>
