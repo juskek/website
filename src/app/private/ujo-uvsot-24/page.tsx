@@ -12,15 +12,15 @@ export default function Page() {
   const { loading, setLoading, isFading, handleTextClick, fadeDurationMs, message } = usePage()
 
   return (
-    <div className="absolute inset-0">
+    <div className="relative h-[70vh] w-full">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center">
           <TeaLoadingIndicator />
         </div>
       )}
-
-      <ModelCanvas setLoading={setLoading}></ModelCanvas>
-
+      <div className="absolute inset-0">
+        <ModelCanvas setLoading={setLoading}></ModelCanvas>
+      </div>
       {!loading && (
         <MessageDisplay
           isFading={isFading}
