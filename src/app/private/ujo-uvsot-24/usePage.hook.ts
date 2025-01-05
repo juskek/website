@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { messages as MESSAGES } from './messages'
 
 export const usePage = () => {
   const fadeDurationMs = 500
@@ -7,13 +8,12 @@ export const usePage = () => {
   const [messageIndex, setMessageIndex] = useState(0)
   const [isFading, setIsFading] = useState(false)
 
-  const messages = ['hey cutie']
-  const message = messages[messageIndex]
+  const message = MESSAGES[messageIndex]
 
   const handleTextClick = () => {
     setIsFading(true)
     setTimeout(() => {
-      setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length)
+      setMessageIndex((prevIndex) => (prevIndex + 1) % MESSAGES.length)
       setIsFading(false)
     }, fadeDurationMs)
   }
