@@ -6,7 +6,7 @@ import { useEffect, useRef } from 'react'
 import { MeshStandardMaterial, Object3D } from 'three'
 
 export function ModelWithTexture({ setLoading }) {
-  const rotationSpeed = 0.01
+  const rotationSpeed = 0.001
 
   const { scene, materials } = useGLTF('/static/models/peony/model.glb', true)
   const texture = useTexture('/static/models/peony/texture.jpeg')
