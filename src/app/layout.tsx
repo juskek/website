@@ -3,18 +3,24 @@ import 'src/css/tailwind.css'
 
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
-import { Space_Grotesk } from 'next/font/google'
+import { Lavishly_Yours, Space_Grotesk } from 'next/font/google'
 import { Analytics, AnalyticsConfig } from 'pliny/analytics'
 import { SearchConfig, SearchProvider } from 'pliny/search'
 import Footer from 'src/components/Footer'
 import Header from 'src/components/Header'
-import SectionContainer from 'src/components/SectionContainer'
 import { ThemeProviders } from './theme-providers'
 
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-space-grotesk',
+})
+
+const lavishly_yours = Lavishly_Yours({
+  subsets: ['latin'],
+  display: 'swap',
+  weight: '400',
+  variable: '--font-lavishly-yours',
 })
 
 export const metadata: Metadata = {
@@ -61,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${space_grotesk.variable} ${lavishly_yours.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
@@ -76,15 +82,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-white text-black antialiased ">
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
-          <SectionContainer>
-            <div className="flex h-screen flex-col justify-between font-sans">
+          <div className="mx-auto w-screen px-4 sm:px-6 xl:px-10">
+            <div className="flex min-h-screen flex-col justify-between font-sans">
               <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
                 <Header />
-                <main className="mb-auto">{children}</main>
+                <main className="min-h-full flex-grow">{children}</main>
               </SearchProvider>
               <Footer />
             </div>
-          </SectionContainer>
+          </div>
         </ThemeProviders>
       </body>
     </html>
