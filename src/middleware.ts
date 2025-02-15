@@ -3,7 +3,6 @@ import { withAuth } from 'next-auth/middleware'
 export default withAuth({
   callbacks: {
     authorized: ({ req, token }) => {
-      console.log({ token })
       if (!token?.allowedRoute) return false
 
       const currentPath = req.nextUrl.pathname
