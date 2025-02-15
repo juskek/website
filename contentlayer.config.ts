@@ -3,6 +3,7 @@ import { writeFileSync } from 'fs'
 import GithubSlugger from 'github-slugger'
 import path from 'path'
 import readingTime from 'reading-time'
+
 // Remark packages
 import {
   extractTocHeadings,
@@ -48,7 +49,7 @@ const computedFields: ComputedFields = {
 function createTagCount(allBlogs) {
   const tagCount: Record<string, number> = {}
   allBlogs.forEach((file) => {
-    if (file.tags && (!isProduction || file.draft !== true || file.hidden === true)) {
+    if (file.tags && file.hidden !== true && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
         const formattedTag = GithubSlugger.slug(tag)
         if (formattedTag in tagCount) {
@@ -60,19 +61,6 @@ function createTagCount(allBlogs) {
     }
   })
   writeFileSync('./src/app/tag-data.json', JSON.stringify(tagCount))
-}
-
-function createSearchIndex(allBlogs) {
-  if (
-    siteMetadata?.search?.provider === 'kbar' &&
-    siteMetadata.search.kbarConfig.searchDocumentsPath
-  ) {
-    writeFileSync(
-      `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
-      JSON.stringify(allCoreContent(sortPosts(allBlogs)))
-    )
-    console.log('Local search index generated...')
-  }
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -129,6 +117,20 @@ export const Authors = defineDocumentType(() => ({
   },
   computedFields,
 }))
+
+function createSearchIndex(allBlogs) {
+  const sortedPosts = sortPosts(allBlogs)
+  const visiblePosts = sortedPosts.filter((post) => post.hidden !== true)
+  if (
+    siteMetadata?.search?.provider === 'kbar' &&
+    siteMetadata.search.kbarConfig.searchDocumentsPath
+  ) {
+    writeFileSync(
+      `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
+      JSON.stringify(allCoreContent(visiblePosts))
+    )
+  }
+}
 
 export default makeSource({
   contentDirPath: 'data',

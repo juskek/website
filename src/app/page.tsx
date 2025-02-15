@@ -4,6 +4,7 @@ import { HomePage } from 'src/features/HomePage/HomePage'
 
 export default async function Page() {
   const sortedPosts = sortPosts(allBlogs)
-  const posts = allCoreContent(sortedPosts)
+  const visiblePosts = sortedPosts.filter((blog) => blog.hidden !== true)
+  const posts = allCoreContent(visiblePosts)
   return <HomePage posts={posts} />
 }
