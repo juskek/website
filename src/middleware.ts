@@ -1,3 +1,17 @@
-export { default } from 'next-auth/middleware'
+import { withAuth } from 'next-auth/middleware'
 
-export const config = { matcher: ['/private/ujo-uvsot-24'] }
+export default withAuth({
+  callbacks: {
+    authorized: ({ req, token }) => {
+      if (!token?.allowedRoute) return false
+
+      const currentPath = req.nextUrl.pathname
+
+      return currentPath.startsWith(token.allowedRoute.replace('/*', ''))
+    },
+  },
+})
+
+export const config = {
+  matcher: ['/blog/algorithmic-trading/:path*', '/private/ujo-uvsot-24'],
+}
