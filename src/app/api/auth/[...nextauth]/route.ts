@@ -3,6 +3,7 @@ import CredentialsProvider from 'next-auth/providers/credentials'
 
 const pagePasswords: Record<string, string> = {
   '/private/ujo-uvsot-24': 'chagi',
+  '/blog/hidden': 'stonks',
   '/blog/algorithmic-trading/*': 'stonks',
 }
 

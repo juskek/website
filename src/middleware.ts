@@ -13,5 +13,5 @@ export default withAuth({
 })
 
 export const config = {
-  matcher: ['/blog/algorithmic-trading/:path*', '/private/ujo-uvsot-24'],
+  matcher: ['/blog/hidden', '/blog/algorithmic-trading/:path*', '/private/ujo-uvsot-24'],
 }
