@@ -129,7 +129,6 @@ function createSearchIndex(allBlogs) {
       `public/${siteMetadata.search.kbarConfig.searchDocumentsPath}`,
       JSON.stringify(allCoreContent(visiblePosts))
     )
-    console.log('Local search index generated...')
   }
 }
 
