@@ -40,7 +40,7 @@ const handler = NextAuth({
         }
 
         if (credentials?.password === expectedPassword) {
-          const user = { id: '1', name: 'User' }
+          const user = { id: '1', name: 'User', allowedRoute: callbackUrl }
           return user
         }
 
@@ -48,6 +48,14 @@ const handler = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.allowedRoute = user.allowedRoute
+      }
+      return token
+    },
+  },
 })
 
 export { handler as GET, handler as POST }
