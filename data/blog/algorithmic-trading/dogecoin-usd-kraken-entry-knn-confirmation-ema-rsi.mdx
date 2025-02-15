@@ -1,0 +1,74 @@
+---
+title: Algo Analysis - kNN entry signal with ADX/EMA + ATR + Stochastic RSI confirmation
+date: '2025-02-15'
+tags: ['trading', 'crypto']
+summary: "An analysis of using kNN entry signal with ADX/EMA + ATR + Stochastic RSI confirmation on DOGECOIN"
+bannerImage: '/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/performance_2025-01-13_2025-02-13.png'
+hidden: true
+---
+
+> A study was performed on DOGECOIN USD 3mins with kNN entry signal with ADX/EMA + ATR + Stochastic RSI for confirmation. The study found the signals to produce a win rate of 71% from 2025-01-13 to 2025-02-13, but a winrate of only 51% from 2024-12-13 to 2025-01-13. Technical indicators can be regime sensitive, and commission for crypto (via Kraken) is high at 0.5% per trade. Next steps include VTI long-hold-if-fail strategy
+
+## How does the model work?  
+The algorithm first tries to whether the regime is trending or not, using ADX. 
+1. Identify whether current regime is trending or not with ADX. 
+2. If trending,
+   1. Identify whether bullish or bearish with EMA
+   2. Identify whether there is enough volatility for significant price movement
+3. If bullish/bearish with enough volatility,
+   1. Wait for kNN to generate buy/sell signal
+   2. Confirm that stochastic RSI is oversold/overbought
+   3. Confirm stochastic RSI konst-damp crossover
+   4. Confirm previous swing tested resistance in EMA ribbon
+   5. Confirm previous close was above/below the long term EMA 
+
+## When did it perform well and poorly and why? 
+The model had decent performance from 2025-01-13 to 2025-02-13, with 28 trades, 71% winrate and 2.8 profit factor.
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/performance_2025-01-13_2025-02-13.png" caption="Performance of algorithm from 2025-01-13 to 2025-02-13" />
+
+The model had poor performance from 2024-12-13 to 2025-01-13, with 27 trades, 52% winrate and 1.8 profit factor.
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/performance_2024-12-13_2025-01-13.png" caption="Performance of algorithm from 2024-12-13 to 2025-01-13" />
+
+A preliminary look at the charts shows clear uptrends and downtrends after 13 Jan, while price movement before that moves sideways more. This could be a contributing factor.
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/charts_2025-01-13_2025-02-13.png" caption="Charts from 2025-01-13 to 2025-02-13" />
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/charts_2024-12-13_2025-01-13.png" caption="Charts from 2024-12-13 to 2025-01-13" />
+
+
+A comparison of stats for ADX, ATR and RSI before and after 13 Jan shows the average ATR and its standard deviation is a lot higher than before, indicating higher volatility, i.e. larger price swings. There is a slight increase in ADX, as well, i.e. stronger trends.
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/stats_comparison.png" caption="Stats comparison before and after 2025-01-13" />
+
+This is reflected when analysing the trades, where the average P&L has doubled.
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/trades_analysis-20250113_20250213.png" caption="Trades analysis from 20250113 to 20250213" />
+
+<ImageAtom src="/static/blog/algorithmic-trading/dogecoin-usd-kraken-entry-knn-confirmation-ema-rsi/trades_analysis-20241213-20250113.png" caption="Trades analysis from 20241213 to 20250113" />
+
+## Why was the model not deployed? 
+- The model is too sensitive to regime shifts
+- The model is not generating appropriate entry points when there is low volatility and trends
+- The average P&L of 0.69% will largely be lost to commission, which is 0.5% per trade.
+
+## What was learnt? 
+- Despite having one of the lowest fees, Kraken's commission rates are really high at 0.25% per filled order
+  - Before attempting to capitalise on price movements, we need to figure out whether the magnitude of the price movement can cover the commission fees
+  - This can be calculated using ATR change over time, which measures the average price movement over a period
+  - This should be used as a filter, not a signal
+- A model can perform well in certain regimes, but not in others. The model needs to be able to identify the regime it is profitable in before making a trade
+  - This is a whole other topic that needs to be explored
+- Dynamic thresholds might be a good way of adjusting regime classification dynamically, instead of using constants
+
+## What's next
+During this investigation,
+- Another ML indicator, a Lorentzian buy/sell signal, was found which seems to produce less noise
+- It was noted that crypto trading has high commission fees
+- Technical indicators can be regime sensitive
+
+In light of this, the next strategy to investigate will be
+- VTI ETF
+  - potentially lower commission
+  - less risky, more buffer for incorrect technical indicator prediction, e.g. go long only, and if prediction is incorrect we can just hold the position
+- Lorentzian indicator
