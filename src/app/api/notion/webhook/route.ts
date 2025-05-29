@@ -1,10 +1,10 @@
-import { BlockObjectRequest } from '@notionhq/client'
 import { NextRequest, NextResponse } from 'next/server'
 import { appendBlockToParent } from 'src/lib/notion/appendBlockToParent'
 import { isBakingEventPageUpdated } from 'src/lib/notion/bakingEvent/isBakingEventPageUpdated'
 import { deleteBlock } from 'src/lib/notion/deleteBlock'
 import { getChildBlocks } from 'src/lib/notion/getChildBlocks'
 import { isShoppingListDropdown } from 'src/lib/notion/shoppingList/isShoppingListDropdown'
+import { shoppingListBlockTemplate } from 'src/lib/notion/shoppingList/shoppingListBlockTemplate'
 
 const BAKING_EVENTS_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
 
@@ -38,37 +38,8 @@ export async function POST(req: NextRequest) {
       await deleteBlock(shoppingListBlock.id)
     }
     console.log('Creating shopping list block...')
-    const newShoppingListBlock: BlockObjectRequest = {
-      object: 'block',
-      type: 'heading_2',
-      heading_2: {
-        rich_text: [
-          {
-            type: 'text',
-            text: {
-              content: 'Shopping List',
-            },
-          },
-        ],
-        children: [
-          {
-            type: 'paragraph',
-            paragraph: {
-              rich_text: [
-                {
-                  type: 'text',
-                  text: {
-                    content: `(Last Updated: ${new Date().toUTCString()})`,
-                  },
-                },
-              ],
-            },
-          },
-        ],
-        is_toggleable: true,
-      },
-    }
-    await appendBlockToParent(bakingEventId, [newShoppingListBlock])
+
+    await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
     console.log('Shopping List block created successfully.')
   }
 
