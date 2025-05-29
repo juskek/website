@@ -17,8 +17,11 @@ export async function POST(req: NextRequest) {
   const isBakingEventsTableEvent =
     body.data.parent.type === 'database' && body.data.parent.id === BAKING_EVENTS_TABLE_ID
 
-  const isBakingEventPageUpdated =
-    isBakingEventsTableEvent && body.type === 'page.properties_updated'
+  const pageUpdated =
+    body.type === 'page.content_updated' || body.type === 'page.properties_updated'
+
+  const isBakingEventPageUpdated = isBakingEventsTableEvent && pageUpdated
+
   if (isBakingEventPageUpdated) {
     console.log('Baking Event Page updated, page id:', body.entity.id)
   }
