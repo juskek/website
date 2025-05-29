@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { getBlockChildren } from 'src/lib/notion/getBlockChildren'
 
 const BAKING_EVENTS_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
 const BAKING_EVENTS_TABLE_ID = '2018f264-e43e-806c-9161-f9712f858c51'
@@ -23,7 +24,10 @@ export async function POST(req: NextRequest) {
   const isBakingEventPageUpdated = isBakingEventsTableEvent && pageUpdated
 
   if (isBakingEventPageUpdated) {
-    console.log('Baking Event Page updated, page id:', body.entity.id)
+    const pageId = body.entity.id
+    console.log('Baking Event Page updated, page id:', pageId)
+
+    const blocks = await getBlockChildren(pageId)
   }
 
   const isBakingEventsRecipesTableEvent =
