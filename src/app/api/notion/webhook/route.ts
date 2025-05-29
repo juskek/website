@@ -72,11 +72,5 @@ export async function POST(req: NextRequest) {
     console.log('Shopping List block created successfully.')
   }
 
-  const isBakingEventsRecipesTableEvent =
-    body.data.parent.type === 'database' && body.data.parent.id === BAKING_EVENTS_RECIPE_TABLE_ID
-  if (isBakingEventsRecipesTableEvent) {
-    console.log('Baking Event Recipe Table updated, Baking Event x Recipe id:', body.entity.id)
-  }
-
   return NextResponse.json({ received: true })
 }
