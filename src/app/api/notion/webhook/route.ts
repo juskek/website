@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { deleteBlock } from 'src/lib/notion/deleteBlock'
 import { getBlockChildren } from 'src/lib/notion/getBlockChildren'
 import { isShoppingListDropdown } from 'src/lib/notion/shoppingList/isShoppingListDropdown'
 
@@ -32,7 +33,8 @@ export async function POST(req: NextRequest) {
 
     const shoppingListBlock = blocks.find(isShoppingListDropdown)
     if (shoppingListBlock) {
-      console.log('Found Shopping List block:', shoppingListBlock.id)
+      console.log('Found Shopping List block, deleting...')
+      await deleteBlock(shoppingListBlock.id)
     } else {
       console.log('No Shopping List block found in Baking Event page:', pageId)
     }
