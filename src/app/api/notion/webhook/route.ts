@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { appendBlockToParent } from 'src/lib/notion/appendBlockToParent'
-import { deleteBlock } from 'src/lib/notion/deleteBlock'
 import { isBakingEventPageUpdated } from 'src/lib/notion/entity/bakingEvent/isBakingEventPageUpdated'
 import { getRecipeIdsForBakingEventId } from 'src/lib/notion/entity/recipe/getRecipeIdsForBakingEventId'
 import { isShoppingListDropdown } from 'src/lib/notion/entity/shoppingList/isShoppingListDropdown'
 import { shoppingListBlockTemplate } from 'src/lib/notion/entity/shoppingList/shoppingListBlockTemplate'
-import { getChildBlocks } from 'src/lib/notion/getChildBlocks'
+import { appendBlockToParent } from 'src/lib/notion/utils/appendBlockToParent'
+import { deleteBlock } from 'src/lib/notion/utils/deleteBlock'
+import { getChildBlocks } from 'src/lib/notion/utils/getChildBlocks'
 
 export async function POST(req: NextRequest) {
   console.log('Received POST request to /api/notion/webhook')
