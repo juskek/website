@@ -1,4 +1,6 @@
+import { BlockObjectRequest } from '@notionhq/client'
 import { NextRequest, NextResponse } from 'next/server'
+import { appendBlockToParent } from 'src/lib/notion/appendBlockToParent'
 import { deleteBlock } from 'src/lib/notion/deleteBlock'
 import { getBlockChildren } from 'src/lib/notion/getBlockChildren'
 import { isShoppingListDropdown } from 'src/lib/notion/shoppingList/isShoppingListDropdown'
@@ -32,12 +34,44 @@ export async function POST(req: NextRequest) {
     const blocks = await getBlockChildren(pageId)
 
     const shoppingListBlock = blocks.find(isShoppingListDropdown)
+
     if (shoppingListBlock) {
       console.log('Found Shopping List block, deleting...')
       await deleteBlock(shoppingListBlock.id)
-    } else {
-      console.log('No Shopping List block found in Baking Event page:', pageId)
     }
+    console.log('Creating shopping list block...')
+    const newShoppingListBlock: BlockObjectRequest = {
+      object: 'block',
+      type: 'heading_2',
+      heading_2: {
+        rich_text: [
+          {
+            type: 'text',
+            text: {
+              content: 'Shopping List',
+            },
+          },
+        ],
+        children: [
+          {
+            type: 'paragraph',
+            paragraph: {
+              rich_text: [
+                {
+                  type: 'text',
+                  text: {
+                    content: `(Last Updated: ${new Date().toUTCString()})`,
+                  },
+                },
+              ],
+            },
+          },
+        ],
+        is_toggleable: true,
+      },
+    }
+    await appendBlockToParent(pageId, [newShoppingListBlock])
+    console.log('Shopping List block created successfully.')
   }
 
   const isBakingEventsRecipesTableEvent =
