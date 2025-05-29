@@ -26,10 +26,10 @@ export async function POST(req: NextRequest) {
   }
 
   if (isBakingEventPageUpdated(body)) {
-    const pageId = body.entity.id
-    console.log('Baking Event Page updated, page id:', pageId)
+    const bakingEventId = body.entity.id
+    console.log('Baking Event Page updated, bakingEventId:', bakingEventId)
 
-    const blocks = await getChildBlocks(pageId)
+    const blocks = await getChildBlocks(bakingEventId)
 
     const shoppingListBlock = blocks.find(isShoppingListDropdown)
 
@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
         is_toggleable: true,
       },
     }
-    await appendBlockToParent(pageId, [newShoppingListBlock])
+    await appendBlockToParent(bakingEventId, [newShoppingListBlock])
     console.log('Shopping List block created successfully.')
   }
 
