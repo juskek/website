@@ -1,4 +1,4 @@
-import { notionClient } from '../notionClient'
+import { notionClient } from '../../notionClient'
 
 const BAKING_EVENTS_X_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
 

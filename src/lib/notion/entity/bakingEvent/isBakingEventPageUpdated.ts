@@ -1,4 +1,4 @@
-import { NotionWebhookEvent } from '../types/NotionWebhookEvent'
+import { NotionWebhookEvent } from '../../types/NotionWebhookEvent'
 
 const BAKING_EVENTS_TABLE_ID = '2018f264-e43e-806c-9161-f9712f858c51'
 
