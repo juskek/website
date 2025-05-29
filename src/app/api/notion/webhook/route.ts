@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { appendBlockToParent } from 'src/lib/notion/appendBlockToParent'
 import { isBakingEventPageUpdated } from 'src/lib/notion/bakingEvent/isBakingEventPageUpdated'
 import { deleteBlock } from 'src/lib/notion/deleteBlock'
-import { getBlockChildren } from 'src/lib/notion/getBlockChildren'
+import { getChildBlocks } from 'src/lib/notion/getChildBlocks'
 import { isShoppingListDropdown } from 'src/lib/notion/shoppingList/isShoppingListDropdown'
 
 const BAKING_EVENTS_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const pageId = body.entity.id
     console.log('Baking Event Page updated, page id:', pageId)
 
-    const blocks = await getBlockChildren(pageId)
+    const blocks = await getChildBlocks(pageId)
 
     const shoppingListBlock = blocks.find(isShoppingListDropdown)
 
