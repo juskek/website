@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const BAKING_EVENTS_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
+const BAKING_EVENTS_TABLE_ID = '2018f264-e43e-806c-9161-f9712f858c51'
 
 export async function POST(req: NextRequest) {
   console.log('Received POST request to /api/notion/webhook')
@@ -13,10 +14,19 @@ export async function POST(req: NextRequest) {
 
   console.log('Received webhook:', body)
 
+  const isBakingEventsTableEvent =
+    body.data.parent.type === 'database' && body.data.parent.id === BAKING_EVENTS_TABLE_ID
+
+  const isBakingEventPageUpdated =
+    isBakingEventsTableEvent && body.type === 'page.properties_updated'
+  if (isBakingEventPageUpdated) {
+    console.log('Baking Event Page updated, page id:', body.entity.id)
+  }
+
   const isBakingEventsRecipesTableEvent =
     body.data.parent.type === 'database' && body.data.parent.id === BAKING_EVENTS_RECIPE_TABLE_ID
   if (isBakingEventsRecipesTableEvent) {
-    console.log('Baking Event Recipe Table updated, entity id:', body.entity.id)
+    console.log('Baking Event Recipe Table updated, Baking Event x Recipe id:', body.entity.id)
   }
 
   return NextResponse.json({ received: true })
