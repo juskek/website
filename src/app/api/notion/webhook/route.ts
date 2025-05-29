@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { appendBlockToParent } from 'src/lib/notion/appendBlockToParent'
 import { isBakingEventPageUpdated } from 'src/lib/notion/bakingEvent/isBakingEventPageUpdated'
+import { getRecipeIdsForBakingEventId } from 'src/lib/notion/database/getRecipeIdsForBakingEventId'
 import { deleteBlock } from 'src/lib/notion/deleteBlock'
 import { getChildBlocks } from 'src/lib/notion/getChildBlocks'
 import { isShoppingListDropdown } from 'src/lib/notion/shoppingList/isShoppingListDropdown'
 import { shoppingListBlockTemplate } from 'src/lib/notion/shoppingList/shoppingListBlockTemplate'
-
-const BAKING_EVENTS_RECIPE_TABLE_ID = '2018f264-e43e-80f6-b3e0-f24ecbb9e565'
 
 export async function POST(req: NextRequest) {
   console.log('Received POST request to /api/notion/webhook')
@@ -37,6 +36,9 @@ export async function POST(req: NextRequest) {
       console.log('Found Shopping List block, deleting...')
       await deleteBlock(shoppingListBlock.id)
     }
+
+    const recipeIds = await getRecipeIdsForBakingEventId(bakingEventId)
+
     console.log('Creating shopping list block...')
 
     await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
