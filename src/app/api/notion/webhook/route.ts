@@ -19,6 +19,12 @@ export async function POST(req: NextRequest) {
 
   console.log('Received webhook:', body)
 
+  const isUpdateByPerson = body.authors.some((author) => author.type === 'person')
+  if (!isUpdateByPerson) {
+    console.log('Ignoring update from bot')
+    return NextResponse.json({ received: true })
+  }
+
   const isBakingEventsTableEvent =
     body.data.parent.type === 'database' && body.data.parent.id === BAKING_EVENTS_TABLE_ID
 
