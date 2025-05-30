@@ -1,6 +1,6 @@
 import { notionClient } from '../../notionClient'
 
-const RECIPES_X_INGREDIENTS_TABLE_ID = 'your_recipes_x_ingredients_table_id_here'
+const RECIPES_X_INGREDIENTS_TABLE_ID = '2018f264-e43e-80af-82be-dc87b87010c8'
 
 export async function getIngredientIdsForRecipeId(recipeId: string): Promise<string[]> {
   console.log('Getting ingredients for Recipe ID:', recipeId)
