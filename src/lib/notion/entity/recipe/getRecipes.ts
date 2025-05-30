@@ -28,6 +28,7 @@ export async function getRecipes(recipeIds: string[]): Promise<Recipe[]> {
         name,
         servings,
         timeMins,
+        ingredients: null,
       })
     }
   }

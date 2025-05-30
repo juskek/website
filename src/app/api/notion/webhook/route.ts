@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isBakingEventPageUpdated } from 'src/lib/notion/entity/bakingEvent/isBakingEventPageUpdated'
+import { enrichRecipesWithIngredients } from 'src/lib/notion/entity/recipe/enrichRecipeWithIngredients'
 import { getRecipeIdsForBakingEventId } from 'src/lib/notion/entity/recipe/getRecipeIdsForBakingEventId'
 import { getRecipes } from 'src/lib/notion/entity/recipe/getRecipes'
 import { isShoppingListDropdown } from 'src/lib/notion/entity/shoppingList/isShoppingListDropdown'
@@ -42,6 +43,7 @@ export async function POST(req: NextRequest) {
     console.log('Creating shopping list block...')
     const recipes = await getRecipes(recipeIds)
     console.log('Recipes retrieved:', recipes)
+    enrichRecipesWithIngredients(recipes)
     await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
     console.log('Shopping List block created successfully.')
   }
