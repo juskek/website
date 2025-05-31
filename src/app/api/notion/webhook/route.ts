@@ -3,6 +3,7 @@ import { isBakingEventPageUpdated } from 'src/lib/notion/entity/bakingEvent/isBa
 import { enrichRecipesWithIngredients } from 'src/lib/notion/entity/recipe/enrichRecipeWithIngredients'
 import { getRecipeIdsForBakingEventId } from 'src/lib/notion/entity/recipe/getRecipeIdsForBakingEventId'
 import { getRecipes } from 'src/lib/notion/entity/recipe/getRecipes'
+import { computeShoppingList } from 'src/lib/notion/entity/shoppingList/computeShoppingList'
 import { isShoppingListDropdown } from 'src/lib/notion/entity/shoppingList/isShoppingListDropdown'
 import { shoppingListBlockTemplate } from 'src/lib/notion/entity/shoppingList/shoppingListBlockTemplate'
 import { appendBlockToParent } from 'src/lib/notion/utils/appendBlockToParent'
@@ -45,6 +46,10 @@ export async function POST(req: NextRequest) {
     await enrichRecipesWithIngredients(recipes)
     console.log('Recipes retrieved:')
     console.dir(recipes, { depth: null })
+    const shoppingList = computeShoppingList(recipes)
+
+    console.log('Shopping list computed:')
+    console.dir(shoppingList, { depth: null })
     await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
     console.log('Shopping List block created successfully.')
   }
