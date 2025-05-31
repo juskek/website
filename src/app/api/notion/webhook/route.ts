@@ -4,8 +4,10 @@ import { enrichRecipesWithIngredients } from 'src/lib/notion/entity/recipe/enric
 import { getRecipeIdsForBakingEventId } from 'src/lib/notion/entity/recipe/getRecipeIdsForBakingEventId'
 import { getRecipes } from 'src/lib/notion/entity/recipe/getRecipes'
 import { computeShoppingList } from 'src/lib/notion/entity/shoppingList/computeShoppingList'
+import { generateShoppingListBlocks } from 'src/lib/notion/entity/shoppingList/generateShoppingListBlocks'
 import { isShoppingListDropdown } from 'src/lib/notion/entity/shoppingList/isShoppingListDropdown'
 import { shoppingListBlockTemplate } from 'src/lib/notion/entity/shoppingList/shoppingListBlockTemplate'
+import { appendBlocksToParent } from 'src/lib/notion/utils/appendBlocksToParent'
 import { appendBlockToParent } from 'src/lib/notion/utils/appendBlockToParent'
 import { deleteBlock } from 'src/lib/notion/utils/deleteBlock'
 import { getChildBlocks } from 'src/lib/notion/utils/getChildBlocks'
@@ -50,7 +52,17 @@ export async function POST(req: NextRequest) {
 
     console.log('Shopping list computed:')
     console.dir(shoppingList, { depth: null })
-    await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
+
+    const shoppingListDropdownBlockId = await appendBlockToParent(
+      bakingEventId,
+      shoppingListBlockTemplate()
+    )
+
+    await appendBlocksToParent(
+      shoppingListDropdownBlockId,
+      generateShoppingListBlocks(shoppingList)
+    )
+
     console.log('Shopping List block created successfully.')
   }
 

@@ -3,11 +3,9 @@
 import { BlockObjectRequest } from '@notionhq/client'
 import { notionClient } from '../notionClient'
 
-export async function appendBlockToParent(parentId: string, block: BlockObjectRequest) {
+export async function appendBlocksToParent(parentId: string, blocks: BlockObjectRequest[]) {
   const response = await notionClient.blocks.children.append({
     block_id: parentId,
-    children: [block],
+    children: blocks,
   })
-  const blockId = response.results[0]?.id
-  return blockId
 }
