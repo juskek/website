@@ -42,8 +42,9 @@ export async function POST(req: NextRequest) {
     const recipeIds = await getRecipeIdsForBakingEventId(bakingEventId)
     console.log('Creating shopping list block...')
     const recipes = await getRecipes(recipeIds)
-    enrichRecipesWithIngredients(recipes)
-    console.log('Recipes retrieved:', recipes)
+    await enrichRecipesWithIngredients(recipes)
+    console.log('Recipes retrieved:')
+    console.dir(recipes, { depth: null })
     await appendBlockToParent(bakingEventId, [shoppingListBlockTemplate()])
     console.log('Shopping List block created successfully.')
   }
