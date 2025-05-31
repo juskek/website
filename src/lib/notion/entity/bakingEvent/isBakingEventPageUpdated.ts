@@ -10,5 +10,6 @@ export function isBakingEventPageUpdated(body: NotionWebhookEvent) {
     body.type === 'page.content_updated' || body.type === 'page.properties_updated'
 
   const isBakingEventPageUpdated = isBakingEventsTableEvent && pageUpdated
+  console.log('isBakingEventPageUpdated:', isBakingEventPageUpdated)
   return isBakingEventPageUpdated
 }

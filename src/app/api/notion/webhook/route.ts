@@ -1,69 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { isBakingEventPageUpdated } from 'src/lib/notion/entity/bakingEvent/isBakingEventPageUpdated'
-import { enrichRecipesWithIngredients } from 'src/lib/notion/entity/recipe/enrichRecipeWithIngredients'
-import { getRecipeIdsForBakingEventId } from 'src/lib/notion/entity/recipe/getRecipeIdsForBakingEventId'
-import { getRecipes } from 'src/lib/notion/entity/recipe/getRecipes'
-import { computeShoppingList } from 'src/lib/notion/entity/shoppingList/computeShoppingList'
-import { generateShoppingListBlocks } from 'src/lib/notion/entity/shoppingList/generateShoppingListBlocks'
-import { isShoppingListDropdown } from 'src/lib/notion/entity/shoppingList/isShoppingListDropdown'
-import { shoppingListBlockTemplate } from 'src/lib/notion/entity/shoppingList/shoppingListBlockTemplate'
-import { appendBlocksToParent } from 'src/lib/notion/utils/appendBlocksToParent'
-import { appendBlockToParent } from 'src/lib/notion/utils/appendBlockToParent'
-import { deleteBlock } from 'src/lib/notion/utils/deleteBlock'
-import { getChildBlocks } from 'src/lib/notion/utils/getChildBlocks'
+import { processBakingEventPageUpdate } from 'src/lib/notion/entity/bakingEvent/processBakingEventPageUpdate'
+import { isUpdateByPersonEvent } from 'src/lib/notion/utils/isUpdateByPersonEvent'
+import { isVerificationEvent } from 'src/lib/notion/utils/isVerificationEvent'
 
 export async function POST(req: NextRequest) {
   console.log('Received POST request to /api/notion/webhook')
   const body = await req.json()
 
-  if ('verification_token' in body) {
-    console.log('Webhook verification token received:', body['verification_token'])
+  if (isVerificationEvent(body)) {
     return NextResponse.json({ verification_token: body['verification_token'] })
   }
 
-  console.log('Received webhook:', body)
-
-  const isUpdateByPerson = body.authors.some((author) => author.type === 'person')
-  if (!isUpdateByPerson) {
+  if (!isUpdateByPersonEvent(body)) {
     console.log('Ignoring update from bot')
     return NextResponse.json({ received: true })
   }
 
+  console.log('Received webhook:', body)
+
   if (isBakingEventPageUpdated(body)) {
-    const bakingEventId = body.entity.id
-    console.log('Baking Event Page updated, bakingEventId:', bakingEventId)
-
-    const blocks = await getChildBlocks(bakingEventId)
-
-    const shoppingListBlock = blocks.find(isShoppingListDropdown)
-
-    if (shoppingListBlock) {
-      console.log('Found Shopping List block, deleting...')
-      await deleteBlock(shoppingListBlock.id)
-    }
-
-    const recipeIds = await getRecipeIdsForBakingEventId(bakingEventId)
-    console.log('Creating shopping list block...')
-    const recipes = await getRecipes(recipeIds)
-    await enrichRecipesWithIngredients(recipes)
-    console.log('Recipes retrieved:')
-    console.dir(recipes, { depth: null })
-    const shoppingList = computeShoppingList(recipes)
-
-    console.log('Shopping list computed:')
-    console.dir(shoppingList, { depth: null })
-
-    const shoppingListDropdownBlockId = await appendBlockToParent(
-      bakingEventId,
-      shoppingListBlockTemplate()
-    )
-
-    await appendBlocksToParent(
-      shoppingListDropdownBlockId,
-      generateShoppingListBlocks(shoppingList)
-    )
-
-    console.log('Shopping List block created successfully.')
+    processBakingEventPageUpdate(body)
   }
 
   return NextResponse.json({ received: true })
