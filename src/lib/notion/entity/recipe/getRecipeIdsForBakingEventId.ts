@@ -1,3 +1,4 @@
+import { PageObjectResponse } from '@notionhq/client'
 import { notionClient } from '../../notionClient'
 import { Recipe } from './Recipe'
 
@@ -22,7 +23,7 @@ export async function getRecipesForBakingEventId(bakingEventId: string) {
     in_trash: false,
   })
   const pagesWithProperties = response.results.filter(
-    (result) => result.object === 'page' && 'properties' in result
+    (result): result is PageObjectResponse => result.object === 'page' && 'properties' in result
   )
   const recipes: Recipe[] = []
 
