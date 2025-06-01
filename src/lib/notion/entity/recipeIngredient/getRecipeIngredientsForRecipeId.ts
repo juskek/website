@@ -1,3 +1,4 @@
+import { PageObjectResponse } from '@notionhq/client'
 import { notionClient } from '../../notionClient'
 import { RecipeIngredient } from './RecipeIngredient'
 
@@ -19,7 +20,7 @@ export async function getRecipeIngredientsForRecipeId(
   })
 
   const pagesWithProperties = response.results.filter(
-    (result) => result.object === 'page' && 'properties' in result
+    (result): result is PageObjectResponse => result.object === 'page' && 'properties' in result
   )
 
   const recipeIngredients: RecipeIngredient[] = pagesWithProperties.flatMap((result) => {
