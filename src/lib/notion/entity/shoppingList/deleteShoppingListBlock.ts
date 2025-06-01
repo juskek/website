@@ -8,6 +8,7 @@ export async function deleteShoppingListBlock(bakingEventId: string) {
   const shoppingListBlock = blocks.find(isShoppingListDropdown)
 
   if (shoppingListBlock) {
+    console.log('Deleting shopping list block:', shoppingListBlock.id)
     await deleteBlock(shoppingListBlock.id)
   }
 }
