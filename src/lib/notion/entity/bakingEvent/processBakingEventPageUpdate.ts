@@ -1,43 +1,33 @@
+import { NotionWebhookEvent } from '../../types/NotionWebhookEvent'
 import { appendBlocksToParent } from '../../utils/appendBlocksToParent'
 import { appendBlockToParent } from '../../utils/appendBlockToParent'
-import { deleteBlock } from '../../utils/deleteBlock'
-import { getChildBlocks } from '../../utils/getChildBlocks'
 import { enrichRecipesWithIngredients } from '../recipe/enrichRecipeWithIngredients'
-import { getRecipeIdsForBakingEventId } from '../recipe/getRecipeIdsForBakingEventId'
-import { getRecipes } from '../recipe/getRecipes'
+import { getRecipesForBakingEventId } from '../recipe/getRecipeIdsForBakingEventId'
+import { enrichRecipesWithBasicInfo } from '../recipe/getRecipes'
 import { computeShoppingList } from '../shoppingList/computeShoppingList'
+import { deleteShoppingListBlock } from '../shoppingList/deleteShoppingListBlock'
 import { generateShoppingListBlocks } from '../shoppingList/generateShoppingListBlocks'
-import { isShoppingListDropdown } from '../shoppingList/isShoppingListDropdown'
 import { shoppingListBlockTemplate } from '../shoppingList/shoppingListBlockTemplate'
 
-export async function processBakingEventPageUpdate(body: any) {
+export async function processBakingEventPageUpdate(body: NotionWebhookEvent) {
   const bakingEventId = body.entity.id
 
-  const blocks = await getChildBlocks(bakingEventId)
+  await deleteShoppingListBlock(bakingEventId)
 
-  const shoppingListBlock = blocks.find(isShoppingListDropdown)
-
-  if (shoppingListBlock) {
-    await deleteBlock(shoppingListBlock.id)
-  }
-
-  const recipeIds = await getRecipeIdsForBakingEventId(bakingEventId)
-  console.log('Creating shopping list block...')
-  const recipes = await getRecipes(recipeIds)
+  const recipes = await getRecipesForBakingEventId(bakingEventId)
+  await enrichRecipesWithBasicInfo(recipes)
   await enrichRecipesWithIngredients(recipes)
-  console.log('Recipes retrieved:')
-  console.dir(recipes, { depth: null })
+
   const shoppingList = computeShoppingList(recipes)
 
-  console.log('Shopping list computed:')
-  console.dir(shoppingList, { depth: null })
-
+  const shoppingListDropdownBlock = shoppingListBlockTemplate()
   const shoppingListDropdownBlockId = await appendBlockToParent(
     bakingEventId,
-    shoppingListBlockTemplate()
+    shoppingListDropdownBlock
   )
 
-  await appendBlocksToParent(shoppingListDropdownBlockId, generateShoppingListBlocks(shoppingList))
+  const shoppingListBlocks = generateShoppingListBlocks(shoppingList)
+  await appendBlocksToParent(shoppingListDropdownBlockId, shoppingListBlocks)
 
   console.log('Shopping List block created successfully.')
 }

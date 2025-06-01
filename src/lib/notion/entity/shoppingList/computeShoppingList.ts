@@ -1,6 +1,8 @@
 import { Recipe } from '../recipe/Recipe'
 
 export function computeShoppingList(recipes: Recipe[]) {
+  console.log('Computing shopping list from recipes:')
+  console.dir(recipes, { depth: null })
   const summary = new Map<
     string,
     {
@@ -39,16 +41,28 @@ export function computeShoppingList(recipes: Recipe[]) {
           `Ingredient ${ingredient.id} (${ingredient.name}) has no price per kg specified.`
         )
       }
-      const existing = summary.get(ingredient.id)
 
+      if (recipe.servingsDesired === null) {
+        throw new Error(
+          `Recipe ${recipe.id} (${recipe.name}) has no servings desired or servings specified.`
+        )
+      }
+
+      if (recipe.servings === null) {
+        throw new Error(`Recipe ${recipe.id} (${recipe.name}) has no servings specified.`)
+      }
+
+      const existing = summary.get(ingredient.id)
+      const scaledGrams =
+        (recipe.servingsDesired * recipeIngredient.quantityGrams) / recipe.servings
       if (existing) {
-        existing.totalGrams += quantityGrams
+        existing.totalGrams += scaledGrams
         continue
       }
 
       summary.set(ingredient.id, {
         name: ingredient.name,
-        totalGrams: recipeIngredient.quantityGrams,
+        totalGrams: scaledGrams,
         pricePerKg: ingredient.pricePerKg,
       })
     }
