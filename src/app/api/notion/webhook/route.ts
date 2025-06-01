@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
   console.log('Received webhook:', body)
 
   if (isBakingEventPageUpdated(body)) {
-    processBakingEventPageUpdate(body)
+    await processBakingEventPageUpdate(body)
   }
 
   return NextResponse.json({ received: true })
