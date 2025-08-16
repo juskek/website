@@ -20,11 +20,9 @@ const layouts = {
   PostBanner,
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string[] }
-}): Promise<Metadata | undefined> {
+export async function generateMetadata(props: {params: Promise<{ slug: string[] }>}): Promise<Metadata | undefined> {
+  const params = await props.params
+
   return generateArticleMetadata(params.slug)
 }
 
@@ -34,7 +32,9 @@ export const generateStaticParams = async () => {
   return paths
 }
 
-export default async function Page({ params }: { params: { slug: string[] } }) {
+export default async function Page(props: {params: Promise<{ slug: string[] }>}) {
+  const params = await props.params
+
   const checkGeneratedHeadings = await getHeadingsTreeFromArticle(params.slug.join('/'))
 
   const slug = decodeURI(params.slug.join('/'))
