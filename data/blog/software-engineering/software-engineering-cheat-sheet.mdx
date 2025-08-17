@@ -1,0 +1,496 @@
+---
+title: Software Development Engineering Cheat Sheet
+date: '2000-01-01'
+tags: ['software engineering']
+draft: false
+summary: ''
+bannerImage: '/static/blog/software-engineering/software-engineering-cheat-sheet/software.png'
+---
+
+> Cheat sheets for software development and engineering. If software were dishes, developers are the chefs who prepare them and engineers are the architects who design the kitchen.
+
+## Engineering
+How to design software that is robust, scalable, and efficient.
+
+### Data Structures & Algorithms
+How to solve problems with code.
+
+
+#### Methods to Reinterpret Problems
+- Create formula and see if shifting variables around can simplify solution
+
+
+#### Modulo
+
+
+| Application                     | Modulo by | Example                      |
+| ------------------------------- | --------- | ---------------------------- |
+| Get n trailing digits           | 10^n      | 1234 % 100 = 34              |
+| Check even/odd                  | 2         | isEven = x % 2 == 0          |
+| Get value of bit after addition | 2         | (1 + 1) % 2 = 0              |
+|                                 |           | (0 + 1) % 2 = 1              |
+|                                 |           | (0 + 0) % 2 = 0              |
+| Check divisible by n            | n         | isXDivisibleByN = x % n == 0 |
+
+#### Floor Division
+
+| Application                                    | Denominator | Example                  |
+| ---------------------------------------------- | ----------- | ------------------------ |
+| Remove n trailing digits                       | 10^n        | 12345 // 100 = 123       |
+| Get carry over bit after addition              | 2           | (1 + 1) // 2 = 1         |
+|                                                |             | (0 + 1) // 2 = 0         |
+|                                                |             | (0 + 0) // 2 = 0         |
+| Get midpoint of any array ([0,1,2]  [0,1,2,3]) | 2           | midpoint = len(arr) // 2 |
+
+
+
+#### Binary Trees
+
+**Sizes**
+
+- no. of nodes: $n$
+- height of tree: $log_x n$, 
+  - where $x$ is for a $x$-ary tree
+- width of tree: $2^x$
+  - where $x$ is the level of the tree for which you want the width
+
+**How to navigate a Tree**
+
+There are two methods of navigating a tree: Depth-First Search (DFS) and Breadth-First Search (BFS)
+
+
+**DFS**
+
+There are three ways to perform traversal: 
+1. In-Order Traversal (IOT) -> left, node, right
+2. Pre-Order Traversal (PreOT) -> node, left, right
+3. Post-Order Traversal (PostOT) -> left, right, node
+
+There are two ways to implement DFS:
+
+
+
+```python
+'''
+1. Recursively
+    - Adv.: Clean and intuitive
+    - Disadv.: Limited by recursion depth, stack overflow risk
+'''
+
+def recursive(root):
+    iot(root)
+    preOT(root)
+    postOT(root)
+
+def iot(node):
+    if node is None:
+        return
+
+    iot(node.left)
+    process(node)
+    iot(node.right)
+
+def preOT(node):
+    if node is None:
+        return
+
+    process(node)
+    preOT(node.left)
+    preOT(node.right)
+
+def postOT(node):
+    if node is None:
+        return
+
+    preOT(node.left)
+    preOT(node.right)
+    process(node)
+
+'''
+2. Iteratively
+    - Adv.: Robust for large or unbounded inputs
+    - Disadv.: Less intuitive and readable
+'''
+
+def iot(root):
+    if root is None:
+        return
+        
+    stack = []
+    node = root
+
+    while stack or node:
+        # go left as far as possible
+        while node:
+            stack.append(node)
+            node = node.left
+        
+        node = stack.pop()
+        process(node)
+        stack.append(node.right)
+
+def preOT(root):
+    if root is None:
+        return 
+    
+    stack = [root] # switching this to a queue changes the DFS to BFS
+    while stack:
+        node = stack.pop()
+        
+        process(node)
+
+        # push right first so left is processed first
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+
+
+def postOT(root):
+    if root is None:
+        return
+    
+    stack = []
+    lastNode = None
+    node = root
+
+    while stack or node:
+        # go left as far as possible
+        if node:
+            stack.append(node)
+            node = node.left
+            continue
+        
+        # at leftmost node, if candidate has right and is not the last visited node, check right subtree
+        # at 
+        candidateNode = stack[-1]
+        if candidateNode.right and lastNode != candidateNode.right:
+            node = candidateNode.right
+            continue
+
+        node = stack.pop()
+        process(node)
+        lastNode = node
+        node = None # do not process node again
+```
+
+**BFS**
+
+There are two ways to perform traversal: 
+1. Flat Traversal (FT)
+2. Level-Order Traversal (LOT)
+
+BFS is primarily done iteratively - it can be implemented recursively but there is no practical benefit. 
+```python 
+
+def ft(root):
+    if root is None:
+        return
+    
+    queue = deque([root])
+
+    while queue:
+        node = queue.popleft()
+
+        process(node)
+
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+
+def lot(root):
+    if root is None:
+        return
+
+    queue = deque([root])
+
+    while queue: 
+        # for LOT, we just need to wrap the flat traversal logic in a for loop with levelSize iterations
+        levelSize = len(queue)
+        for _ in range(0,levelSize):
+            # same as flat traversal
+
+```
+Note: 
+- You can also add metadata for each node by appending tuples `(node, metadata)` to the queue instead of just nodes
+
+#### Array
+
+**How many times can I slide a window over an array?**
+
+- Intuition
+  - Start from the base case - window size 1
+    - How many times can you slide it? 
+  - Increase window size 
+- Formula
+  - `len(array) - windowSize + 1`
+
+#### Bitwise Operations
+
+| Operation | Application                                              | Example                                              |
+| --------- | -------------------------------------------------------- | ---------------------------------------------------- |
+| AND &     | Get carry for binary addition of two numbers             | 1 & 1 = 1                                            |
+| AND &     | Get last bit                                             | 10 & 1 = 0, 11 & 1 = 1                               |
+| XOR ^     | Get sum without carry for binary addition of two numbers | 1 ^ 1 = 0                                            |
+|           |                                                          | 0 ^ 1 = 1                                            |
+|           |                                                          | 1 ^ 0 = 1                                            |
+| XOR ^     | Find differences between two bit patterns                | 0110 ^ 1010 = 1100, i.e. different in first two bits |
+| Bit Shift | Multiply/divide by 2                                     | x = 2, x \<\< 1 = 4, x \>\> 1 = 1                    |
+
+#### Dynamic Programming
+
+- Caching results for fibonacci-style recurrence
+
+#### Binomial Theorem
+
+**Theory**
+
+- The Binomial Theorem describes how to expand binomial expressions without brute force
+  - Binomial Expression: 
+    - An expression formed from two terms, 
+    - e.g. $(a + b)$
+  - Binomial Theorem Formula:
+    - $(x+y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^{k}$
+      - where $\binom{n}{k} \equiv {}^{n}C_k$ is the binomial coefficient a.k.a. combinations 
+
+**Applications**
+
+- The binomial coefficient can be used to describe symmetric number sequences, e.g. 1 4 6 4 1
+
+#### Describing Symmetry
+
+- Linear Symmetry
+  - Combinations / Binomial Coefficient
+  - Modulus
+  - Even Functions
+  - Cosine
+- Rotational Symmetry
+  - Odd Functions
+  - Sine
+
+
+### System Design
+How to design scalable and efficient systems.
+
+#### Sandboxing
+
+
+### Concrete Knowledge
+
+#### JavaScript
+
+**Engines**
+
+- V8 (Chrome)
+- SpiderMonkey (Firefox)
+- JavaScriptCore (Safari)
+- Hermes (React Native)
+
+**Runtimes**
+
+- Node
+  - V8 engine
+  - Adv.
+    - Mature ecosystem
+    - Safest bet
+  - Disadv.
+    - Slower
+    - Security via containers/OS policies
+- Deno
+  - V8 engine
+  - Adv.
+    - Like node but faster
+  - Disadv.
+    - Mostly compatible with node modules
+    - Security via containers/OS policies
+- Bun
+  - JavaScriptCore engine
+  - Adv.
+    - Sandboxed
+  - Disadv.
+    - Least compatibility with node modules
+
+#### CPU Optimisations
+- Branch Prediction 
+- Variable reassignment
+- CPU Pipelining
+- CPU Preloading
+- CPU Prefetching
+- Cache Locality
+- Memory Access Patterns
+
+#### Language Optimisations
+- Peephole Optimisations
+- Inline
+- Unroll
+
+#### Operating Systems
+
+- Stack Size
+  - Linux: 8MB
+  - macOS: 8MB
+  - Windows: 1MB
+
+
+#### Recursion Depth Limits
+- C++: 100,000
+  - Depends on frame size + OS stack size
+- Dart: 10,000
+  - Set by default
+- JS: 10,000
+  - (V8 engine/chrome)
+  - Depends on 
+- Java: 1,000
+  - Depends on frame size + OS stack size 
+- Python: 1,000
+  - Set by default 
+
+
+## Development
+Software development revolves around turning ideas into working software. Developers are the chefs who prepare the dishes, organise the kitchen with the goal of getting the best tasting food to customers with the least amount of wastage with time and ingredients.
+
+### Delivery
+Delivery is about delivering value to users with minimal waste using business processes.
+
+#### Tickets
+
+Tickets are the backbone of software delivery. They help track work, manage priorities, and ensure that the team is aligned on what needs to be done. This is similar to how chefs use order tickets in a restaurant to manage customer orders.
+
+#### Typical stages a ticket flows through
+
+Tickets go through multiple stages, just like how an order ticket in a restaurant go through multiple stages, e.g. waiter takes the order from the customer, sends it to the kitchen, chefs prepare the different components of the dish, head chef does the final check, waiter brings the dish to the customer.
+
+1. Epic Refinement
+  - Functional Design
+    - BPMN Diagrams
+    - High Level User Stories
+    - e.g. "I want spagbol"
+  - Technical Design
+    - High-level answer to the question "What do we need to do?"
+      - e.g. "We need to buy tomatoes, mince, etc."
+    - Avoid diving too deep into "How do we need to do it?"
+      - e.g. "We need to cook the tomatoes for x mins"
+2. Ticket Refinement
+  - Business Refinement
+    - Validation Steps 
+      - e.g. "There should be mirepoix, arrabiata, browned mince, cooked spaghetti..."
+  - Technical Refinement
+    - Tech Steps 
+    - e.g. "We need to chop the tomatoes, celery, onions into squares, cook them for x mins"
+3. Delivery
+  - Development
+    - Do the tech steps
+    - e.g. Chefs carrying out the recipe steps
+  - Code Review
+  - Functional Review
+    - e.g. Head chef checking the food
+  - Validation
+    - e.g. Waiter asks the user "How's the food?"
+
+#### Poke Yoke
+
+1. What was the root cause of the issue? 
+2. How could we have detected this issue earlier? 
+3. How can we prevent this issue from happening again?
+
+### Maintainability
+How to deliver value to users with minimal waste using code.
+
+- Single Layer of Abstraction Principle (SLAP)
+- Dependency Injection
+- Clean Conditionals
+- Conventional Commits
+- Early Returns / Continues
+- Prefer for loops over while
+
+### Testing
+
+- E2E
+  - Main user stories, happy paths
+- Integration
+  - Edge cases not caught by E2E
+- Unit
+  - Small functions
+
+### Concrete Knowledge
+
+
+#### Database Terminology
+
+- Statement
+  - A single command
+  - e.g. SELECT, UPDATE, FROM, WHERE
+- Read / Query / Data Query Language (DQL)
+  - A complete set of statements
+  - Ends with a semicolon
+  - e.g. SELECT * FROM fooTable;
+- Write / Update / Data Modification Language (DML)
+  - A complete set of statements
+  - Ends with a semicolon
+  - e.g. UPDATE fooTable SET colName = x;
+- Read Result Set
+  - Data returned from a query
+- Update Acknowledgement
+  - Confirmation returned from a query
+  - e.g. x rows inserted
+- Transaction
+  - A group of queries executed as a single unit
+  - e.g. BEGIN / START TRANSACTION -> COMMIT / ROLLBACK
+- Session
+  - A client's connection to the DB
+- Database Object
+  - Anything defined in a DB
+  - e.g. Tables, Views, Indices, Stored Procedures, Triggers, Functions
+- Schema
+  - Logical grouping of DB objects
+- Execution Plan
+  - The strategy the DB optimiser chooses to run your query
+  - e.g. index scan vs full scan, hash join
+
+#### Database Data Persistence
+
+**Data in Tables (Persistent)**
+1. Base/Regular Table
+   - Data stored in disk
+   - Data is persistent across sessions
+2. Temporary Table
+   - Data stored in disk
+   - Data exists only in session
+   - Data can exist across sessions if cached
+
+**Data in Queries (In Memory)**
+1. Result Set
+   - Data stored in memory
+   - Data exists onl
+2. Derived / Subquery e.g. FROM
+   - Data stored in memory
+   - Data exists only in query
+3. Common Table Expression (CTEs) e.g. WITH
+   - Same as subquery, but provides syntactic alias for reusing subqueries
+
+**Named Queries**
+
+1. View/Virtual
+   - Query definition stored in disk
+   - Data only stored 
+2. Materialised View
+   - Data stored in disk
+   - Manual/scheduled refresh
+3. Stored Procedure
+   - Data stored in disk
+   - ??? 
+
+
+#### Database Isolation Levels
+
+| Isolation Level | Dirty Reads | 
+#### Testing Frameworks
+
+**Frontend**
+
+- Web
+  - Prefer Playwright (purpose built from the ground up) over Cypress (multiple packages patched together)
+- Cross Platform
+  - Flutter
+    - integration_test
